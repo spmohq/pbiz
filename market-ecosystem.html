@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>9-Step Market Ecosystem Prompt System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 25px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .step-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>9-Step Market Ecosystem Prompt System</h1>
+      <p class="subtitle">Full Audience & Strategy Framework</p>
+    </header>
+
+    <div class="prompt-workflow">
+      
+      <!-- Main Prompt -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 1: The Main Prompt</span></div>
+        <div class="prompt-content" id="pm">You are an expert market research strategist, content ecosystem architect, SEO strategist, and digital product consultant.
+
+I will provide the sales copy of a product I want to sell online.
+
+Your job is to deeply analyze the sales copy and infer the **complete ecosystem around the type of people who would buy this product**.
+
+Your goal is NOT to summarize the product.
+
+Your goal is to extract the **full audience, problems, strategies, and opportunities** around this market.
+
+The typical users are **BEGINNER and INTERMEDIATE people who want practical strategies to grow in their activity domain.**
+
+STEP 1 — Analyze the sales copy and determine:
+
+• the activity domain
+• who the product is for
+• the type of activities these people perform
+• the broader ecosystem of their domain
+
+STEP 2 — Generate the following output.
+
+[1] Target Audience
+
+Audience consisting of beginner and intermediate [activity domain] users who want practical strategies to grow in their domain, including:
+
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+• audience segment
+
+Generate **15–25 audience segments**.
+
+After completing this step, stop.
+Do NOT generate any additional sections yet.
+
+PRODUCT SALES COPY
+
+[Paste sales copy here]</div>
+        <button class="copy-btn" onclick="copyPrompt('pm', this)">Copy Main Prompt</button>
+      </div>
+
+      <!-- Follow up 1 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 2: Topics Analysis</span></div>
+        <div class="prompt-content" id="p1">Continue the market ecosystem analysis using the same sales copy and reasoning from the previous step.
+
+Now generate the next section.
+
+[2] Topics For This Audience
+
+Topics relevant to their activity domain.
+
+Generate **30–50 topics** covering the full ecosystem.
+
+Include topics related to:
+
+• skills
+• tools
+• strategies
+• operations
+• marketing
+• growth
+• optimization
+• monetization
+• mindset
+• beginner guidance
+• scaling strategies
+
+Output only the bullet list.
+
+Stop after completing this section.</div>
+        <button class="copy-btn" onclick="copyPrompt('p1', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 2 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 3: Audience Pain Points</span></div>
+        <div class="prompt-content" id="p2">Continue the analysis using the same audience and domain identified earlier.
+
+Generate the next section.
+
+[3] Audience Pain Points
+
+Common struggles faced by this audience.
+
+Generate **20–30 realistic pain points** including:
+
+• beginner confusion
+• operational challenges
+• marketing difficulties
+• growth barriers
+• mindset struggles
+• technical problems
+
+Output only the bullet list.</div>
+        <button class="copy-btn" onclick="copyPrompt('p2', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 3 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 4: Content Ideas</span></div>
+        <div class="prompt-content" id="p3">Continue using the same audience and ecosystem.
+
+Generate the next section.
+
+[4] Content Ideas
+
+Generate **25–40 content ideas** that would attract this audience.
+
+Include ideas suitable for:
+
+• blog posts
+• YouTube videos
+• newsletters
+• social media posts
+• educational content
+
+Focus on **practical strategies and beginner guidance**.</div>
+        <button class="copy-btn" onclick="copyPrompt('p3', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 4 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 5: Lead Magnets</span></div>
+        <div class="prompt-content" id="p4">Continue using the same audience and ecosystem.
+
+Generate the next section.
+
+[5] Lead Magnet Ideas
+
+Generate **15–25 lead magnet ideas** that would attract this audience.
+
+Examples may include:
+
+• checklists
+• templates
+• guides
+• toolkits
+• cheat sheets
+• frameworks
+• mini-courses
+
+Each idea should be **practical and actionable**.</div>
+        <button class="copy-btn" onclick="copyPrompt('p4', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 5 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 6: Product Ideas</span></div>
+        <div class="prompt-content" id="p5">Continue the ecosystem analysis.
+
+Generate the next section.
+
+[6] Additional Product Ideas
+
+Suggest **15–25 digital product ideas** for this audience.
+
+Examples may include:
+
+• courses
+• templates
+• playbooks
+• toolkits
+• paid communities
+• workshops
+• SaaS tools
+
+Focus on products that solve real problems for this audience.</div>
+        <button class="copy-btn" onclick="copyPrompt('p5', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 6 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 7: Content Pillars</span></div>
+        <div class="prompt-content" id="p6">Continue the ecosystem analysis.
+
+Generate the next section.
+
+[7] Content Pillars
+
+Identify **5–7 major content pillars** for this audience.
+
+For each pillar include:
+
+Pillar: [name]
+
+Example topics:
+• topic
+• topic
+• topic
+• topic
+
+These pillars should represent the **core knowledge areas** of this domain.</div>
+        <button class="copy-btn" onclick="copyPrompt('p6', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 7 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 8: SEO Keyword Clusters</span></div>
+        <div class="prompt-content" id="p7">Continue the ecosystem analysis.
+
+Generate the next section.
+
+[8] SEO Keyword Clusters
+
+Generate **30–50 SEO-friendly topic ideas** suitable for search traffic.
+
+Examples:
+
+• how to [activity] for beginners
+• best tools for [activity]
+• beginner guide to [activity]
+• common mistakes in [activity]
+• step-by-step strategy for [activity]
+
+Focus on **high-intent search topics**.</div>
+        <button class="copy-btn" onclick="copyPrompt('p7', this)">Copy Prompt</button>
+      </div>
+
+      <!-- Follow up 8 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Step 9: Monetization</span></div>
+        <div class="prompt-content" id="p8">Continue the ecosystem analysis.
+
+Generate the final section.
+
+[9] Monetization Opportunities
+
+Suggest **15–25 ways to monetize this audience**.
+
+Include opportunities such as:
+
+• digital products
+• courses
+• memberships
+• affiliate marketing
+• consulting
+• software tools
+• services
+• communities
+
+Focus on **realistic and scalable monetization models**.
+
+This is the final step.</div>
+        <button class="copy-btn" onclick="copyPrompt('p8', this)">Copy Prompt</button>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

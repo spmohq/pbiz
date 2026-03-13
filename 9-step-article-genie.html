@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>9-Step Article Genie - Full Workflow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 25px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .step-card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>9-Step Article Genie</h1>
+      <p class="subtitle">Complete Workflow Pipeline</p>
+    </header>
+
+    <div class="prompt-workflow">
+      
+      <!-- Prompt 1 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #1: The Core Structure</span></div>
+        <div class="prompt-content" id="p1">Please read and understand the uploaded content, It's the sales page text of a product I want to promote and give me one medium.com article with end CTA. 
+
+Here is the structure for the article.
+
+Below is the clean final version with correct sequencing and clearer formatting.
+
+---
+
+Final Structure for the Medium Article
+
+This structure works well for conversion-focused articles on Medium.
+
+---
+
+1. The Problem (≈300 words)
+
+Goal: Show the reader you understand their struggle and create emotional connection.
+
+Write the entire Problem section using this sequence:
+
+1. A familiar situation
+2. A repeating struggle
+3. The reader’s hidden frustration
+4. The cost of the problem
+5. A hint that common advice is flawed
+
+That final hint connects directly to the next section.
+
+---
+
+2. Why Most Advice Fails (≈250–350 words)
+
+Goal: Increase authority by explaining why common solutions don’t work.
+
+Use this sequence:
+
+1. Present the common advice
+2. Explain why people trust it
+3. Acknowledge its partial truth
+4. Reveal the missing mechanism
+5. Contrast old thinking vs better thinking
+6. Transition to a new framework
+
+This prepares the reader for your method.
+
+---
+
+3. The Big Idea / Framework (≈300–400 words)
+
+Goal: Introduce your unique solution and make it memorable.
+
+A strong framework section contains six structural elements:
+
+1. The Insight
+2. The Reframe
+3. The Named Framework
+4. The Simple Model
+5. The Why-It-Works Explanation
+6. The Bridge to the Steps
+
+Do not label these in the article. They guide the writing.
+
+---
+
+4. The Steps
+
+Goal: Turn the framework into a clear process.
+
+Break the solution into 3–5 steps.
+
+Each step becomes a subsection.
+
+A strong step contains five micro-elements:
+
+1. Step Title
+
+   * Action-oriented
+   * Short
+   * Specific
+
+Examples:
+
+Identify the Core Issue
+Organize the Key Inputs
+Test the First Version
+
+2. Step Purpose
+   Explain why the step exists.
+
+3. Step Explanation
+   Describe how to perform the step.
+
+4. Example or Illustration
+   Show how it works in practice.
+
+5. Micro Result
+   Explain the benefit gained after completing the step.
+
+---
+
+5. Quick Action Plan (≈100–200 words)
+
+Goal: Give the reader something simple they can apply immediately.
+
+A strong Quick Action Plan contains five structural elements:
+
+1. Reset the reader’s expectations
+2. Present a simplified starting point
+3. Provide a short action checklist
+4. Highlight the immediate benefit
+5. Transition to the next step
+
+This section creates momentum and trust.
+
+---
+
+6. The Next Step
+
+Goal: Lead the reader toward deeper help.
+
+This section may include:
+
+• your product
+• a tool
+• a guide
+• a lead magnet
+• a resource
+
+Structure:
+
+1. Recognize the reader’s progress
+2. Explain the benefit of deeper support
+3. Introduce the resource or product
+4. Show how it helps implement the framework
+5. Provide a clear call to action
+
+Example:
+
+Use this tool.
+
+---
+
+The Full Conversion Flow
+
+The article now moves through a psychological progression:
+
+Problem → emotional recognition
+Why Advice Fails → belief shift
+Framework → conceptual clarity
+Steps → practical process
+Quick Action Plan → immediate progress
+Next Step → product or lead magnet
+
+---
+
+Also, please give me the best suitable Headline of the article adhering strictly to the following "The 7 headline formulas that make Medium articles using this structure get dramatically more clicks and reads."
+
+The 7 headline formulas that make Medium articles using this structure get dramatically more clicks and reads:
+
+Headlines are extremely important on Medium because readers usually decide in 2–3 seconds whether to click your article.
+
+For articles that aim to sell a product through education, the headline must do three things:
+
+• attract attention
+• promise a useful insight
+• hint at a practical solution
+
+Professional writers often rely on repeatable headline frameworks rather than inventing headlines randomly.
+
+Below are 7 high-performing headline formulas commonly used for Medium-style educational articles.
+
+---
+
+1. The Problem–Solution Headline
+
+This is one of the most reliable formats.
+
+Structure:
+
+Problem + Clear Solution
+
+Example pattern:
+
+How to Solve [Specific Problem] Without [Common Frustration]
+
+Why it works:
+
+• Readers immediately recognize their problem
+• The promise of a solution is clear
+
+Best used when the problem is very specific and relatable.
+
+---
+
+2. The Mistake Headline
+
+People are naturally curious about mistakes.
+
+Structure:
+
+Number + Mistakes + Audience
+
+Example pattern:
+
+X Mistakes That Keep People From [Desired Outcome]
+
+Why it works:
+
+• Creates curiosity
+• Suggests hidden insight
+
+Readers click because they want to know:
+
+> “Am I making this mistake?”
+
+---
+
+3. The Contrarian Headline
+
+This headline challenges common beliefs.
+
+Structure:
+
+Why Something Popular Is Wrong
+
+Example pattern:
+
+Why Most Advice About [Topic] Doesn’t Work
+
+Why it works:
+
+• Disrupts expectations
+• creates curiosity
+
+This works especially well with your article structure because it connects directly to the section:
+
+“Why Most Advice Fails.”
+
+---
+
+4. The Framework Headline
+
+This headline introduces a method or system.
+
+Structure:
+
+The [Name] Framework for Achieving [Outcome]
+
+Example pattern:
+
+The Simple System That Helps You [Achieve Result]
+
+Why it works:
+
+• readers love structured methods
+• frameworks feel practical and teachable
+
+This headline works particularly well when your article introduces a named framework.
+
+---
+
+5. The Insight Headline
+
+This headline highlights a surprising realization.
+
+Structure:
+
+The Hidden Reason Behind a Problem
+
+Example pattern:
+
+The Real Reason People Struggle With [Topic]
+
+Why it works:
+
+• triggers curiosity
+• promises deeper understanding
+
+Readers feel they will learn something they didn’t know before.
+
+---
+
+6. The “Nobody Tells You” Headline
+
+This headline signals insider knowledge.
+
+Structure:
+
+What Nobody Tells You About [Topic]
+
+Example pattern:
+
+What Nobody Tells You About Learning [Skill]
+
+Why it works:
+
+• implies hidden knowledge
+• suggests the reader will gain an advantage
+
+This format performs well for educational content.
+
+---
+
+7. The Step-Based Headline
+
+This headline emphasizes practicality.
+
+Structure:
+
+Number + Steps + Desired Outcome
+
+Example pattern:
+
+X Steps to [Achieve Specific Result]
+
+Why it works:
+
+• clear expectation
+• structured promise
+• easy to understand
+
+This format works well when your article contains a step-by-step framework.
+
+---
+
+How to Choose the Best Headline
+
+Before selecting a headline, ask three questions:
+
+1. Is the problem recognizable?
+   If yes → use a *Problem–Solution* headline.
+
+2. Does the article challenge common beliefs?
+   If yes → use a *Contrarian* headline.
+
+3. Does the article introduce a method or system?
+   If yes → use a *Framework* headline.
+
+---
+
+One Important Medium Strategy
+
+The most effective headlines on Medium usually combine two elements:
+
+• curiosity
+• usefulness
+
+Example structure:
+
+Curiosity + Practical Outcome
+
+This combination attracts clicks without sounding like clickbait.
+
+---
+
+Also add a DISCLOSURE
+
+DISCLOSURE REQUIREMENT
+
+Include the following disclosure naturally within the article (preferably at the end after the CTA of the article in a transparent and professional tone):
+
+Disclosure: This article may contain affiliate links. If you purchase through these links, I may earn a commission at no additional cost to you.
+
+The disclosure must feel transparent, calm, and compliant with Medium guidelines. It must not feel defensive or promotional.</div>
+        <button class="copy-btn" onclick="copyPrompt('p1', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 2 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #2: Title Requirements</span></div>
+        <div class="prompt-content" id="p2">Section TITLE REQUIREMENTS
+The section title must:
+• Clearly communicate the central insight of the section
+• Avoid hype, exaggeration, or emotional manipulation
+• Avoid vague or abstract phrasing
+• Avoid clickbait curiosity framing
+• Be intellectually compelling but calm
+
+Do not use overly clever or metaphor-only titles.
+
+The article should subtly increase curiosity about the structured solution without feeling promotional.
+
+Add a stronger hook in the first 3 lines and optimize this specifically for Medium algorithm engagement.</div>
+        <button class="copy-btn" onclick="copyPrompt('p2', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 3 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #3: Kolkata Style Rewrite</span></div>
+        <div class="prompt-content" id="p3">Rewrite the article you provided in the previous answer.
+
+Core Instruction:
+Rewrite it while preserving its original meaning, positioning, and call-to-action. Improve clarity, flow, engagement, and authority without changing the core message.
+
+Tone:
+Determine the tone organically based on the opening hook, structure, and stated purpose. Do not preset or impose a tone. Let the emotional intensity, authority level, and language style naturally align with those elements.
+
+Language & Style Directive:
+Write in modern, natural, everyday conversational English as spoken in Kolkata, West Bengal, India — but without local slang, regional grammar, or phrasing that could confuse a global audience.
+The language must be easily understood by a 21-year-old.
+Always address the reader directly using “you” and “your.”
+Where appropriate, subtly reflect Kolkata conversational cadence through sentence rhythm and phrasing — without slang, regional grammar, or loss of conservative authority.
+
+Stylistic Priority Order:
+If any stylistic conflict occurs, follow this order:
+1. Preserve natural English flow.
+2. Maintain clarity and reader understanding.
+3. Retain intended meaning over literal wording.
+
+Writing Quality Requirements:
+* The writing must feel spontaneous, fluid, culturally authentic, and polished.
+* Avoid stiff, overly academic, robotic, or mechanically literal phrasing.
+* Write like a trusted authority speaking one-on-one.
+* Vary sentence length and rhythm naturally, mixing short emphasis lines with longer explanatory sentences where it improves clarity and engagement.
+* Strengthen weak transitions where necessary.
+
+Output Format:
+Present the rewritten article separately.
+Do not add commentary or explanations.
+Only output the rewritten article.</div>
+        <button class="copy-btn" onclick="copyPrompt('p3', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 4 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #4: Review & Rate</span></div>
+        <div class="prompt-content" id="p4">review this article and rate it</div>
+        <button class="copy-btn" onclick="copyPrompt('p4', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 5 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #5: 3-Point Optimization</span></div>
+        <div class="prompt-content" id="p5">Please optimize it with the followings:
+1️⃣ Stronger first 3 lines
+2️⃣ Sharper section titles
+3️⃣ Slightly stronger CTA bridge</div>
+        <button class="copy-btn" onclick="copyPrompt('p5', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 6 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #6: Strict Style Review</span></div>
+        <div class="prompt-content" id="p6">Please review this article and rate it. Also, see if this is strictly followed:
+
+Language & Style Directive:
+Write in modern, natural, everyday conversational English as spoken in Kolkata, West Bengal, India — but without local slang, regional grammar, or phrasing that could confuse a global audience.
+The language must be easily understood by a 21-year-old.
+Always address the reader directly using “you” and “your.”
+Where appropriate, subtly reflect Kolkata conversational cadence through sentence rhythm and phrasing — without slang, regional grammar, or loss of conservative authority.
+
+Stylistic Priority Order:
+If any stylistic conflict occurs, follow this order:
+1. Preserve natural English flow.
+2. Maintain clarity and reader understanding.
+3. Retain intended meaning over literal wording.
+
+Writing Quality Requirements:
+* The writing must feel spontaneous, fluid, culturally authentic, and polished.
+* Avoid stiff, overly academic, robotic, or mechanically literal phrasing.
+* Write like a trusted authority speaking one-on-one.
+* Vary sentence length and rhythm naturally, mixing short emphasis lines with longer explanatory sentences where it improves clarity and engagement.
+* Strengthen weak transitions where necessary.</div>
+        <button class="copy-btn" onclick="copyPrompt('p6', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 7 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #7: Optimize</span></div>
+        <div class="prompt-content" id="p7">Please optimize with it:</div>
+        <button class="copy-btn" onclick="copyPrompt('p7', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 8 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #8: Medium Layout & Tags</span></div>
+        <div class="prompt-content" id="p8">Now please show me exactly how the final Medium layouts would look (title, subtitle, section formatting, and closing line) — ready to paste into my Medium draft editor. 
+Also suggest Medium-style tags (the 5–7 keywords that help with discovery on the platform).</div>
+        <button class="copy-btn" onclick="copyPrompt('p8', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 9 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #9: Feature Image</span></div>
+        <div class="prompt-content" id="p9">Create a minimalist feature image for this Medium article.
+Size: 1400 × 788 px, 16:9 aspect ratio.
+Choose an appropriate background color automatically based on the article’s topic and mood (e.g., calm = soft neutrals, productivity = light blues/greens, serious topics = muted grays, energetic topics = bold warm tones).
+Use a clean, modern composition consistent with Medium’s editorial style:
+– clear, bold, high-contrast title text
+– subtle, small line-icons related to the topic
+– plenty of negative space
+– minimal color palette (background + 1–2 accent colors)
+Keep the design flat, simple, and professional — no textures, gradients, or visual clutter.</div>
+        <button class="copy-btn" onclick="copyPrompt('p9', this)">Copy Full Prompt</button>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>

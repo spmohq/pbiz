@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentence Rewriter - Kolkata Style</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .external-btn-container {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .zerogpt-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .zerogpt-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2);
+      background: #f1f5f9;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 120px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 20px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+    }
+
+    .copy-btn {
+      background: var(--accent-primary);
+      color: #020617;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Rewrite A Sentence</h1>
+      <div class="external-btn-container">
+        <a href="https://www.zerogpt.com/" target="_blank" class="zerogpt-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+          ZeroGPT
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <div class="input-card">
+        <label for="sentenceInput">Sentence to Rewrite</label>
+        <textarea id="sentenceInput" placeholder="Enter your sentence here..."></textarea>
+      </div>
+
+      <div class="output-card">
+        <label>Generated Prompt</label>
+        <div class="prompt-content" id="promptDisplay">Rewrite the following sentence in modern, natural, everyday conversational English as spoken in Kolkata, West Bengal, India — but without local slang, regional grammar, or phrasing that could confuse a global audience. If appropriate, subtly reflect Kolkata conversational cadence through sentence rhythm and phrasing — without slang, regional grammar, or loss of conservative authority. It must be easily understood by a 21-year-old.
+
+Sentence:
+</div>
+        <button class="copy-btn" id="copyBtn">
+          <span>Copy Full Prompt</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const sentenceInput = document.getElementById('sentenceInput');
+    const promptDisplay = document.getElementById('promptDisplay');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const basePrompt = `Rewrite the following sentence in modern, natural, everyday conversational English as spoken in Kolkata, West Bengal, India — but without local slang, regional grammar, or phrasing that could confuse a global audience. If appropriate, subtly reflect Kolkata conversational cadence through sentence rhythm and phrasing — without slang, regional grammar, or loss of conservative authority. It must be easily understood by a 21-year-old.
+
+Sentence:`;
+
+    const updatePrompt = () => {
+      const userInput = sentenceInput.value;
+      promptDisplay.innerText = `${basePrompt}\n${userInput}`;
+    };
+
+    sentenceInput.addEventListener('input', updatePrompt);
+
+    copyBtn.addEventListener('click', () => {
+      const textToCopy = promptDisplay.innerText;
+      navigator.clipboard.writeText(textToCopy).then(() => {
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = `<span>Copied!</span>`;
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+    
+    // Initial State
+    updatePrompt();
+  </script>
+</body>
+</html>
