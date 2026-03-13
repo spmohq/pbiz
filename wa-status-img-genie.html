@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Status Image Genie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+      min-height: 80px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+
+    @media (max-width: 768px) {
+        .input-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>WhatsApp Status Image Genie</h1>
+      <p class="subtitle">Direct-Response Status Designer</p>
+    </header>
+
+    <main>
+      <!-- Inputs Section -->
+      <div class="input-card">
+        <div class="input-grid">
+            <div>
+                <label for="prodName">Product Name</label>
+                <textarea id="prodName" placeholder="e.g., Supplier Secrets Playbook"></textarea>
+            </div>
+            <div>
+                <label for="audience">Target Audience</label>
+                <textarea id="audience" placeholder="e.g., Aspiring dropshippers in India"></textarea>
+            </div>
+            <div>
+                <label for="painPoint">Main problem they face</label>
+                <textarea id="painPoint" placeholder="e.g., getting scammed by fake suppliers or low quality products"></textarea>
+            </div>
+            <div>
+                <label for="benefit">Core benefit of the product</label>
+                <textarea id="benefit" placeholder="e.g., access to a verified list of 500+ premium Indian suppliers"></textarea>
+            </div>
+        </div>
+      </div>
+
+      <!-- Prompt 1 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #1: Marketing Strategy & Design</div>
+        <div class="prompt-content" id="p1Display"></div>
+        <button class="copy-btn" onclick="copyText('p1Display', this)">
+          <span>Copy Full Prompt</span>
+        </button>
+      </div>
+
+      <!-- Prompt 2 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #2: Creation Command</div>
+        <div class="prompt-content" id="p2Display"></div>
+        <button class="copy-btn" onclick="copyText('p2Display', this)">
+          <span>Copy Image Command</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const inputs = {
+        name: document.getElementById('prodName'),
+        audience: document.getElementById('audience'),
+        pain: document.getElementById('painPoint'),
+        benefit: document.getElementById('benefit')
+    };
+    
+    const p1Display = document.getElementById('p1Display');
+    const p2Display = document.getElementById('p2Display');
+
+    const updatePrompts = () => {
+      const vals = {
+          name: inputs.name.value || "[Insert Product Name]",
+          audience: inputs.audience.value || "[Insert Target Audience]",
+          pain: inputs.pain.value || "[Insert Pain Point]",
+          benefit: inputs.benefit.value || "[Insert Benefit]"
+      };
+
+      const p1Template = `You are an expert direct-response marketer and advertising designer.
+
+Create a highly engaging WhatsApp Status promotional image designed to make viewers immediately message me to get the product.
+
+PRODUCT INFORMATION
+Product name: ${vals.name}
+Target audience: ${vals.audience}
+Main problem they face: ${vals.pain}
+Core benefit of the product: ${vals.benefit}
+
+IMAGE FORMAT
+• Aspect ratio: 9:16
+• Size: 1080 × 1920 px
+• Optimized for WhatsApp Status viewing on mobile
+• Designed to grab attention within 1–2 seconds
+
+VISUAL STYLE
+• Modern minimalist design
+• Flat design only
+• No gradients
+• No textures
+• No visual clutter
+• Clean SaaS / digital product aesthetic
+
+BACKGROUND
+Automatically choose a background color based on the emotional tone:
+
+• Productivity / tools → light blue or teal
+• Educational / learning → soft neutral tones
+• Professional / serious → muted gray
+• Opportunity / money / growth → warm orange or yellow
+
+Use a very subtle geometric or abstract background element.
+
+COLOR RULES
+• Maximum 3 colors total
+• High contrast between text and background
+• CTA must stand out clearly
+
+LAYOUT STRUCTURE
+
+ATTENTION HOOK (top small text)
+Write a curiosity-driven hook that highlights a surprising insight, common mistake, or hidden advantage. The hook should stop viewers from scrolling.
+
+MAIN HEADLINE (large bold text)
+Write a powerful benefit-driven headline (maximum 6 words).
+
+SUBHEADLINE
+Explain the core problem the audience struggles with.
+
+SOCIAL PROOF OR VALUE (optional small text)
+Add a short credibility or value statement if it strengthens the message. Examples:
+
+• Used by 1,000+ creators
+• Save hours of work
+• Instant access
+
+CALL-TO-ACTION BLOCK (bottom)
+Write a short WhatsApp-based call-to-action encouraging the viewer to message me.
+
+ICON ELEMENTS
+Add 2–3 minimalist line icons related to the topic.
+Place them subtly near the subheadline or CTA area.
+
+TYPOGRAPHY
+• Bold modern sans-serif
+• Headline must dominate visually
+• Text must be readable instantly on a phone
+
+IMPORTANT RULES
+• Prioritize clarity over decoration
+• Leave large margins and negative space
+• Avoid overcrowding
+• Design must look professional and trustworthy
+• The headline must communicate the benefit immediately
+• Keep all text within a 10% safe margin to prevent cropping on mobile screens
+
+OUTPUT
+Describe the final image clearly and also provide a detailed image-generation prompt suitable for GPT Image, DALL·E, MidJourney, or similar AI image tools.`;
+
+      const p2Template = `Create the following image:`;
+
+      p1Display.innerText = p1Template;
+      p2Display.innerText = p2Template;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    Object.values(inputs).forEach(input => {
+        input.addEventListener('input', updatePrompts);
+    });
+
+    // Initialize
+    updatePrompts();
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Facebook AD Creative Genie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    .input-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 80px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Facebook AD Creative Genie</h1>
+      <p class="subtitle">AI Image & Caption Generator</p>
+    </header>
+
+    <main>
+      <!-- Inputs Section -->
+      <div class="input-card">
+        <div class="input-grid">
+            <div>
+                <label for="audience">Target Audience</label>
+                <textarea id="audience" placeholder="e.g., WhatsApp sellers and dropshippers in India"></textarea>
+            </div>
+            <div>
+                <label for="problem">Problem this tool solves</label>
+                <textarea id="problem" placeholder="e.g., struggling to find reliable suppliers for their products"></textarea>
+            </div>
+            <div>
+                <label for="usage">When to use prompt & Result achieved</label>
+                <textarea id="usage" placeholder="e.g., Stop struggling with dead inventory and get a verified list of 500+ premium suppliers in 2 seconds"></textarea>
+            </div>
+        </div>
+      </div>
+
+      <!-- Prompt 1 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #1: Ad Image Creative</div>
+        <div class="prompt-content" id="prompt1Display"></div>
+        <button class="copy-btn" onclick="copyText('prompt1Display', this)">
+          <span>Copy Image Prompt</span>
+        </button>
+      </div>
+
+      <!-- Prompt 2 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #2: Ad Caption</div>
+        <div class="prompt-content" id="prompt2Display"></div>
+        <button class="copy-btn" onclick="copyText('prompt2Display', this)">
+          <span>Copy Ad Caption</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const audienceInput = document.getElementById('audience');
+    const problemInput = document.getElementById('problem');
+    const usageInput = document.getElementById('usage');
+    
+    const p1Display = document.getElementById('prompt1Display');
+    const p2Display = document.getElementById('prompt2Display');
+
+    const updatePrompts = () => {
+      const audience = audienceInput.value || "[Target Audience]";
+      const problem = problemInput.value || "[Problem this tool solves]";
+      const usage = usageInput.value || "[when to use the prompt and what result it helps achieve]";
+
+      // Template 1
+      const prompt1Template = `You are an expert Facebook ad creative designer focused on high-conversion marketing visuals.
+
+Create a minimalist, high-converting Facebook Ad image designed to stop scrolling and drive messages.
+
+IMAGE FORMAT
+• Aspect ratio: 16:9
+• Target size: 1400 × 788 px
+• Mobile-first readability
+• Clean modern Facebook ad design
+
+VISUAL STYLE
+• Minimalist marketing design
+• Flat design only
+• No gradients
+• No textures
+• No clutter
+• Strong contrast
+• Plenty of negative space
+
+BACKGROUND
+Choose a simple background color automatically based on the topic mood:
+
+• Productivity / business → light blue or teal
+• Educational / helpful → soft neutral tones
+• Professional / serious → muted gray
+• Opportunity / growth → warm orange or yellow
+
+Use subtle abstract shapes or soft geometric elements.
+
+COLOR RULE
+Use only:
+• 1 background color
+• 1 primary accent color
+• 1 optional secondary accent
+
+Do not exceed 3 colors total.
+
+LAYOUT STRUCTURE
+Use a strong visual hierarchy optimized for Facebook feeds.
+
+ATTENTION LABEL (small badge at top)
+FREE TOOL
+
+PRIMARY HOOK (large bold text — biggest element)
+${usage}
+
+AUDIENCE CALLOUT
+For ${audience}
+
+PROBLEM SOLVED
+${problem}
+
+CTA SECTION
+Send WhatsApp Message
+to Get It
+
+VISUAL ELEMENTS
+Add small minimalist line icons related to the topic.
+Icons should be subtle and supportive.
+
+TYPOGRAPHY
+• Bold modern sans-serif
+• Large headline
+• High contrast text
+• Clear spacing between sections
+
+CONVERSION RULES
+• Headline under 6 words
+• Message readable within 2 seconds
+• Design must stand out in a Facebook feed
+• Ensure strong mobile readability
+
+OUTPUT
+Produce a clean, professional, scroll-stopping Facebook ad image suitable for paid advertising campaigns.`;
+
+      // Template 2
+      const prompt2Template = `[Target Audience]: ${audience}
+
+I built a FREE AI tool that ${problem}.
+
+Perfect for ${audience}.
+
+Message me on WhatsApp to access it.
+
+👉 [URL]`;
+
+      p1Display.innerText = prompt1Template;
+      p2Display.innerText = prompt2Template;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    [audienceInput, problemInput, usageInput].forEach(input => {
+        input.addEventListener('input', updatePrompts);
+    });
+
+    // Initialize
+    updatePrompts();
+  </script>
+</body>
+</html>
