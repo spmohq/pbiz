@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #ffffff;
+            --card-bg: #ffffff;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --border-color: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            color: #111;
+        }
+
+        .block {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .block-content {
+            font-size: 0.95rem;
+            white-space: pre-line; /* Preserves line breaks for copying */
+        }
+
+        .block h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid #f3f4f6;
+            padding-bottom: 8px;
+        }
+
+        .copy-btn {
+            margin-top: 20px;
+            background: #f3f4f6;
+            color: var(--text-main);
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .copy-btn:hover {
+            background: #e5e7eb;
+        }
+
+        .copy-btn.copied {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        /* External Link Buttons Section */
+        .external-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .link-button {
+            display: block;
+            text-align: center;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .link-button:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .link-button:active {
+            transform: translateY(0);
+        }
+
+        /* Specific styling for nested lists in block 4 */
+        .indent { padding-left: 20px; }
+        .bold { font-weight: 700; }
+
+        @media (max-width: 480px) {
+            header h1 { font-size: 1.8rem; }
+            .block { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>My System</h1>
+    </header>
+
+    <!-- Block 1 -->
+    <div class="block">
+        <h2>Block #1</h2>
+        <div class="block-content" id="block1">
+Prasad = Product to give away 
+Pdf and front cover of it (or, pdf for download if it’s a prompt to provide), Description, mockup
+Pin Post 
+DM to ask a question 
+Reply
+
+[Product to sell:
+Pdf and front cover of it, Description, mockup
+Post to share a product
+WhatsApp status image 
+Reply to DM or C/R+DM]</div>
+        <button class="copy-btn" onclick="copyText('block1', this)">
+            <span>Click to Copy</span>
+        </button>
+    </div>
+
+    <!-- Block 2 -->
+    <div class="block">
+        <h2>Block #2</h2>
+        <div class="block-content" id="block2">
+Give away = Pin Post + DM to ask a question + Reply to join group and read the pin post to get the download / access link 
+(WhatsApp Status Image)
+
+Other Products = Post to share a product + Reply with the access link 
+(WhatsApp Status Image)</div>
+        <button class="copy-btn" onclick="copyText('block2', this)">
+            <span>Click to Copy</span>
+        </button>
+    </div>
+
+    <!-- Block 3 -->
+    <div class="block">
+        <h2>Block #3</h2>
+        <div class="block-content" id="block3">
+Attention Grabbing: C/R or DM with a question.</div>
+        <button class="copy-btn" onclick="copyText('block3', this)">
+            <span>Click to Copy</span>
+        </button>
+    </div>
+
+    <!-- Block 4 -->
+    <div class="block">
+        <h2>Block #4</h2>
+        <div class="block-content" id="block4">
+Social Media Posts:
+Either, To promote the product 
+Or, To teach the knowledge and skills to use the product, upgrade the knowledge and skills learnt in the product, to add more dimensions to the techniques learnt in the product.
+
+A, Article:
+1, Article from Affiliate Product's Sales page 
+2, Article from Prompt Details
+3, Insight to Article 
+4, Contrast Article
+
+B, Social media posts 
+
+Text based:
+Tips
+Zeta
+Blog post + Share a blog post 
+Share a Product 
+
+Image based:
+Wish
+Quotes
+WhatsApp Status (Product, Mood)
+Share a Product 
+
+Video based:
+Reel (W&F)
+Tuto (W&F)
+Photo Album 
+
+Text+Image:
+LR Posts: Mood
+Insight Revealed to Post: Hook</div>
+        <button class="copy-btn" onclick="copyText('block4', this)">
+            <span>Click to Copy</span>
+        </button>
+    </div>
+
+    <!-- Block 5 -->
+    <div class="block">
+        <h2>Block #5</h2>
+        <div class="block-content" id="block5">
+Profile - A. For floating visitors 
+Page/Channel - A. For floating visitors
+Group/Community - B. For Established buyers</div>
+        <button class="copy-btn" onclick="copyText('block5', this)">
+            <span>Click to Copy</span>
+        </button>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="external-links">
+        <a href="https://spmohq.github.io/k11/insider-leak.html" target="_blank" class="link-button">Insider Leak Post Genie</a>
+        <a href="https://spmohq.github.io/pbiz/opinion-post-genie.html" target="_blank" class="link-button">Opinion or “Hot Take” Post Genie</a>
+        <a href="https://spmohq.github.io/k11/ai-image-prompt-genie.html" target="_blank" class="link-button">AI Image Prompt Genie</a>
+        <a href="https://spmohq.github.io/pbiz/wa-status-img-genie.html" target="_blank" class="link-button">WhatsApp Status Image Genie</a>
+        <a href="https://spmohq.github.io/pbiz/fb-status-img-genie.html" target="_blank" class="link-button">Facebook Status Image Genie</a>
+        <a href="https://spmohq.github.io/pbiz/quote-genie.html" target="_blank" class="link-button">Quote Genie</a>
+        <a href="https://spmohq.github.io/pbiz/pin-post-genie.html" target="_blank" class="link-button">Pin Post Genie</a>
+        <a href="https://spmohq.github.io/k11/SocialPostProUnlimitedAccess.html" target="_blank" class="link-button">SocialPostPro</a>
+    </div>
+</div>
+
+<script>
+    function copyText(elementId, btn) {
+        const text = document.getElementById(elementId).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            const originalText = btn.innerHTML;
+            btn.classList.add('copied');
+            btn.innerHTML = '<span>✓ Copied!</span>';
+            
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                btn.innerHTML = originalText;
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
