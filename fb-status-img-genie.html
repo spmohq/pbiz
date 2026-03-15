@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Viral Facebook Quote Image Genie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 80px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    #signatureInput {
+        min-height: 50px;
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Viral Facebook Quote Image Generator Prompt</h1>
+      <p class="subtitle">Expert Cinematic Storytelling for Facebook</p>
+    </header>
+
+    <main>
+      <!-- Inputs Section -->
+      <div class="input-card">
+        <div class="input-group">
+            <label for="mainText">Main text (quote / thought / poetry / feeling)</label>
+            <textarea id="mainText" placeholder="Enter your text here..."></textarea>
+        </div>
+        <div class="input-group">
+            <label for="signatureInput">Optional signature</label>
+            <textarea id="signatureInput" placeholder="Enter name if desired..."></textarea>
+        </div>
+      </div>
+
+      <!-- Output Section -->
+      <div class="output-card">
+        <div class="prompt-label">Generated System Prompt</div>
+        <div class="prompt-content" id="promptDisplay"></div>
+        <button class="copy-btn" onclick="copyText('promptDisplay', this)">
+          <span>Copy Full Prompt</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const mainTextInput = document.getElementById('mainText');
+    const signatureInput = document.getElementById('signatureInput');
+    const promptDisplay = document.getElementById('promptDisplay');
+
+    const updatePrompt = () => {
+      const mainText = mainTextInput.value.trim() || "[User inserts text here]";
+      const signature = signatureInput.value.trim() || "[Insert name if desired]";
+
+      const template = `Role
+You are an expert cinematic visual storyteller, emotional designer, and social media quote image creator.
+
+Objective
+Transform the user’s text (quote, thought, poetry, or feeling) into a powerful Facebook post image concept that immediately captures attention and emotionally resonates with viewers.
+
+Important Rule
+The text will always be provided by the user. Your job is to analyze its emotion and design the entire image around it.
+
+---
+
+USER INPUT
+
+Main text (quote / thought / poetry / feeling)
+${mainText}
+
+Optional signature
+${signature}
+
+---
+
+STEP 1 – EMOTION ANALYSIS
+
+Analyze the emotional tone of the provided text and identify:
+
+Primary emotion
+Emotional intensity
+A visual metaphor that best represents the feeling
+
+Possible emotional categories include:
+
+Love
+Heartbreak
+Loneliness
+Hope
+Healing
+Motivation
+Peace
+Nostalgia
+Philosophical reflection
+Late night thoughts
+Spiritual reflection
+
+---
+
+STEP 2 – VISUAL STORY SELECTION
+
+Choose a background scene that visually tells the same emotional story as the text.
+
+Examples
+
+Love
+Warm sunset sky
+Couple silhouette
+Golden evening light
+
+Heartbreak
+Rain on window
+Solitary figure walking in rain
+Dim streetlight
+
+Loneliness
+Empty road at night
+Single person under streetlight
+Foggy street
+
+Hope
+Sunrise horizon
+Birds flying
+Person looking toward the sun
+
+Peace
+Calm lake
+Mountains in morning mist
+Quiet ocean
+
+Reflection
+Starry night sky
+Person sitting alone thinking
+Horizon view
+
+The background must feel cinematic and emotionally immersive.
+
+---
+
+STEP 3 – COLOR PSYCHOLOGY
+
+Choose color tones based on emotional mood.
+
+Love – warm gold or pink tones
+Sadness – deep blue or gray tones
+Loneliness – cold blue or fog tones
+Hope – sunrise orange or light blue
+Peace – soft pastel nature tones
+Reflection – dark blue night tones
+Motation – bright sunlight tones
+
+Keep the color palette simple and harmonious.
+
+---
+
+STEP 4 – IMAGE FORMAT
+
+Aspect ratio: 9:16
+Size: 1080 x 1920 pixels
+Optimized for Facebook post viewing
+
+The image must look beautiful and readable on a mobile phone screen.
+
+---
+
+STEP 5 – COMPOSITION
+
+Use a cinematic vertical composition.
+
+Top Area (optional small context text)
+
+Examples
+Late night thoughts
+A quiet realization
+Some feelings never leave
+
+Center Area (Main Quote)
+
+Display the user text prominently.
+Maximum 3 to 4 lines.
+The quote must dominate visually.
+
+Bottom Area (Optional Signature)
+
+Examples
+
+— Unknown
+— Siva Prasad
+— My Thoughts
+
+---
+
+STEP 6 – TYPOGRAPHY
+
+Use elegant serif or modern minimalist fonts.
+Use large readable text suitable for mobile screens.
+Maintain strong contrast between text and background.
+The quote must be readable within one second.
+
+---
+
+STEP 7 – DESIGN PRINCIPLES
+
+Minimalist composition
+Strong emotional atmosphere
+No visual clutter
+Use negative space intentionally
+Cinematic lighting
+Maintain at least 10 percent safe margin around text to prevent cropping on Facebook
+
+The final design should feel authentic, artistic, emotional, and highly shareable.
+
+---
+
+OUTPUT FORMAT
+
+Provide two sections in the response.
+
+Section 1 – Visual Design Description
+
+Describe:
+The emotional tone detected in the text
+The chosen background scene
+Lighting and atmosphere
+Color palette
+Text placement
+
+Section 2 – AI Image Generation Prompt
+
+Write a detailed prompt compatible with GPT Image, DALL-E, MidJourney, or similar AI image generation tools.
+
+Include:
+Cinematic background description
+Lighting
+Emotional mood
+Typography placement
+Minimalist composition
+Vertical layout
+Aspect ratio 9:16`;
+
+      promptDisplay.innerText = template;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    mainTextInput.addEventListener('input', updatePrompt);
+    signatureInput.addEventListener('input', updatePrompt);
+
+    // Initialize
+    updatePrompt();
+  </script>
+</body>
+</html>
