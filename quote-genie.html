@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quote + Cinematic Image Prompt Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Quote + Cinematic Image Prompt Generator</h1>
+      <p class="subtitle">Bengali Greeting & Visual Storytelling Pipeline</p>
+    </header>
+
+    <main>
+      <!-- Inputs Section -->
+      <div class="input-card">
+        <label for="topicInput">Insert Topic</label>
+        <textarea id="topicInput" placeholder="e.g., Rainy Monsoon Morning, Peaceful Night, Success & Hardwork..."></textarea>
+      </div>
+
+      <!-- Output Section -->
+      <div class="output-card">
+        <div class="prompt-label">Master Prompt Output</div>
+        <div class="prompt-content" id="promptDisplay"></div>
+        <button class="copy-btn" id="copyBtn">
+          <span>Copy Master Prompt</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const topicInput = document.getElementById('topicInput');
+    const promptDisplay = document.getElementById('promptDisplay');
+    const copyBtn = document.getElementById('copyBtn');
+
+    const updatePrompt = () => {
+      const topic = topicInput.value.trim() || "[Insert Topic]";
+
+      const template = `ROLE
+
+Act as an elite cinematic greeting image designer, refined Bengali quote writer, and advanced AI prompt generator.
+
+You specialize in creating elegant WhatsApp greeting images with emotionally meaningful Bengali quotes suitable for mature and respectful relationships.
+
+Your work combines:
+• emotionally warm Bengali messaging
+• cinematic visual storytelling
+• refined aesthetic design for greeting images
+
+The result must feel elegant, natural, and culturally authentic to Bengali communication in Kolkata, West Bengal, India.
+
+
+
+TASK
+
+Topic: ${topic}
+
+Generate 10 short Bengali quotes based on the topic.
+
+For each quote, create:
+
+1. Three message versions
+2. A cinematic AI image generation prompt
+3. A visual concept description for the greeting image
+
+
+
+MESSAGE VERSIONS
+
+For each quote, provide three versions:
+
+1. For Elders  
+Respectful, gentle, polite language.
+
+2. For Close Friends  
+Warm, relaxed, natural conversational tone.
+
+3. Sweet / Protective  
+Affectionate, caring, emotionally warm tone.
+
+
+
+CULTURAL CONTEXT
+
+The wishes must reflect Bengali culture and emotional communication style used in Kolkata, West Bengal, India.
+
+Avoid literal translation style.  
+The message must sound like natural spoken Bengali.
+
+
+
+LANGUAGE
+
+Write in modern, natural Bengali (India).
+
+Avoid:
+• overly poetic language
+• exaggerated drama
+• robotic wording
+• translated phrasing
+
+
+
+LENGTH
+
+Each message should be 1–2 short sentences.
+
+
+
+VARIATION REQUIREMENT
+
+Every quote must be unique.
+
+Vary:
+• wording
+• rhythm
+• emotional warmth
+• blessing style
+• sentence structure
+
+Do not repeat the same sentence pattern.
+
+
+
+IMAGE STYLE GUIDELINES
+
+Each image should look like a cinematic WhatsApp greeting card.
+
+The scene should visually reflect the emotional meaning of the quote.
+
+Include details such as:
+
+• cinematic lighting  
+• soft emotional atmosphere  
+• elegant composition  
+• background suitable for the topic  
+• shallow depth of field  
+• natural colors  
+• realistic or artistic photography style  
+
+Ensure the image has clean space where the quote text can be placed.
+
+
+
+VISUAL MOOD
+
+Select an appropriate visual mood automatically based on the topic, such as:
+
+• warm morning light  
+• peaceful evening glow  
+• rainy window scene  
+• quiet nature landscape  
+• candlelight atmosphere  
+• soft indoor romantic ambience
+
+
+
+OUTPUT FORMAT
+
+
+
+Quote 1
+
+For Elders:
+[message]
+
+For Close Friends:
+[message]
+
+Sweet / Protective:
+[message]
+
+Image Concept:
+Brief description of the visual scene for the greeting image.
+
+AI Image Prompt:
+Detailed cinematic prompt for AI image generators (Midjourney / DALL-E / Leonardo AI).
+
+
+
+Quote 2
+
+For Elders:
+[message]
+
+For Close Friends:
+[message]
+
+Sweet / Protective:
+[message]
+
+Image Concept:
+[visual scene]
+
+AI Image Prompt:
+[cinematic prompt]
+
+
+
+Continue the same structure for all 10 quotes.`;
+
+      promptDisplay.innerText = template;
+    };
+
+    copyBtn.addEventListener('click', () => {
+      const text = promptDisplay.innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = `<span>Copied!</span>`;
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+
+    topicInput.addEventListener('input', updatePrompt);
+
+    // Initialize
+    updatePrompt();
+  </script>
+</body>
+</html>
