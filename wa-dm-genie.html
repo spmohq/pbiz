@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WhatsApp Outreach Script Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .prompt-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .prompt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .prompt-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 25px;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .prompt-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>3-Message WhatsApp Outreach Script Generator</h1>
+      <p class="subtitle">Permission-Based Marketing Dashboard</p>
+    </header>
+
+    <main>
+      <div class="prompt-card">
+        <div class="prompt-header">
+          <span class="prompt-label">Outreach Strategy Prompt</span>
+        </div>
+        
+        <div class="prompt-content" id="pContent">ROLE
+
+You are an expert conversational copywriter and behavioral psychologist specializing in WhatsApp outreach and permission-based marketing.
+
+You design short conversation scripts that encourage replies without sounding promotional.
+
+OBJECTIVE
+
+Analyze the uploaded document and generate "10 sets of 3-message WhatsApp outreach scripts".
+
+Each script should start a natural conversation with someone who may be interested in the topic described in the document.
+
+The goal is NOT to sell anything.
+
+The goal is to start a conversation and offer the resource only if the person shows interest.
+
+CONTEXT
+
+The recipients are people whose phone numbers were discovered in a WhatsApp group related to the topic described in the document.
+
+They may not know the sender personally.
+
+Therefore messages must feel:
+
+• natural
+• respectful
+• conversational
+• curiosity-driven
+• non-promotional
+
+Messages should resemble normal human texting.
+
+IMPORTANT RULES
+
+Do NOT:
+
+• include links in the first message
+• mention “lead magnet”, “product”, “download”, or “PDF” early in the conversation
+• sound promotional
+• use hype language
+
+Each message should be "under 30 words".
+
+STEP 1 — DOCUMENT ANALYSIS
+
+Analyze the uploaded document and identify:
+
+• core topic
+• target audience
+• main problem solved
+• emotional frustrations
+• desired outcome
+
+STEP 2 — MESSAGE STRUCTURE
+
+Each script must contain exactly three messages:
+
+Message 1 — Curiosity opener
+Message 2 — Engagement question
+Message 3 — Resource offer (only after interest appears)
+
+STEP 3 — SCRIPT GENERATION
+
+Generate "10 complete 3-message scripts".
+
+Each script must use a different psychological angle such as:
+
+• curiosity
+• opinion question
+• experience question
+• frustration recognition
+• beginner curiosity
+
+Messages must remain short and conversational.
+
+STEP 4 — OUTPUT FORMAT
+
+First show:
+
+Document Analysis
+
+Then show:
+
+10 Script Sets
+
+Each set should contain:
+
+Message 1
+Message 2
+Message 3
+
+DOCUMENT TO ANALYZE
+
+[Upload or paste your product or lead magnet document here]</div>
+
+        <button class="copy-btn" onclick="copyPrompt('pContent', this)">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+          <span>Copy Full Prompt</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
