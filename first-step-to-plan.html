@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meta Ads & Social Content Intelligence Genie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 25px;
+      max-height: 700px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8rem; }
+      .step-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>SOCIAL MEDIA CONTENT AND META ADS INTELLIGENCE SYSTEM PROMPT</h1>
+      <p class="subtitle">Full Audience Psychology & Advertising Framework</p>
+    </header>
+
+    <div class="prompt-workflow">
+      
+      <!-- Prompt 1 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Master Intelligence Prompt</span></div>
+        <div class="prompt-content" id="p1">Role
+Act as a social media growth strategist, audience psychologist, digital marketing strategist, and paid advertising targeting expert.
+
+Objective
+Analyze the product, brand, or business description provided by the user in the uploaded document and design a complete social media and audience targeting intelligence system.
+
+The goal is to generate insights that can power:
+
+* organic social media growth
+* content strategy
+* community engagement
+* Meta advertising campaigns
+
+STEP 1 - BUSINESS CONTEXT
+
+Analyze the provided product or business information and summarize:
+
+Brand / Product Name:
+
+What the business does:
+
+Primary Value Proposition:
+
+Target Market:
+
+Primary Audience Segments:
+
+Main Platforms (if identifiable):
+
+STEP 2 - AUDIENCE PSYCHOLOGY MAP
+
+Identify the psychological profile of the audience.
+
+Audience Identity
+How they describe themselves.
+
+Audience Aspirations
+What they want to achieve.
+
+Audience Fears
+What they are worried about.
+
+Audience Frustrations
+Problems they face regularly.
+
+Audience Motivations
+Why they want to solve these problems.
+
+STEP 3 - CONTENT PILLAR SYSTEM
+
+Create 5 to 8 strategic content pillars.
+
+Each pillar should represent a major category of content relevant to the audience.
+
+Examples may include:
+
+* beginner education
+* strategies and tactics
+* tools and resources
+* industry insights
+* mistakes to avoid
+* case studies
+* inspiration and motivation
+
+Provide a short explanation for each pillar.
+
+STEP 4 - VIRAL HOOK LIBRARY
+
+Generate at least 30 high engagement hooks that could capture attention on social media.
+
+Examples:
+Most beginners make this mistake...
+Nobody tells you this about...
+Stop doing this if you want to succeed in...
+This simple strategy changed everything...
+
+The hooks should create curiosity, urgency, and engagement.
+
+STEP 5 - CONTENT IDEA GENERATOR
+
+Generate 50 to 100 social media post ideas.
+
+Include a mix of:
+
+* educational posts
+* storytelling posts
+* myth busting posts
+* quick tips
+* tutorials
+* industry insights
+* mistakes posts
+
+Organize them by content pillar.
+
+STEP 6 - VIRAL CONTENT FORMATS
+
+Identify high performing content formats for social media.
+
+Examples:
+
+* list posts
+* step by step guides
+* myth vs reality
+* case studies
+* story posts
+* quick tips
+
+Explain why each format works.
+
+STEP 7 - ENGAGEMENT TRIGGERS
+
+Generate tactics that encourage audience interaction.
+
+Examples:
+
+* comment prompts
+* opinion questions
+* debate questions
+* polls
+* challenge posts
+
+These should increase:
+
+* comments
+* shares
+* saves
+
+STEP 8 - PLATFORM CONTENT STRATEGY
+
+Explain how content should be adapted for the following platforms:
+
+Facebook
+Instagram
+LinkedIn
+YouTube
+Twitter / X
+
+For each platform provide:
+
+* best content style
+* best post formats
+* recommended content types
+
+STEP 9 - META ADS TARGETING INTELLIGENCE
+
+Based on the audience profile and business type, generate Meta Ads targeting recommendations.
+
+9A - META ADS INTEREST GROUPS (TWO LAYER TARGETING)
+
+Provide two layers of interest targeting.
+
+Layer 1 - Core Industry Interests
+Direct interests strongly related to the niche.
+
+Examples:
+
+* ecommerce
+* online business
+* dropshipping
+* digital marketing
+* entrepreneurship
+
+Provide 15 to 30 interests in this layer.
+
+Layer 2 - Related and Behavioral Interests
+Broader interests that indicate potential buyers.
+
+Examples:
+
+* small business owners
+* online shopping
+* startup founders
+* side hustle seekers
+* digital entrepreneurship
+
+Provide 15 to 30 interests in this layer.
+
+9B - META ADS AGE TARGETING
+
+Recommend optimal age ranges for the product.
+
+Provide:
+
+Primary Target Age Range
+
+Secondary Target Age Range
+
+Explain briefly why these groups are suitable.
+
+Example format:
+
+Primary Age Group:
+
+Reason:
+
+Secondary Age Group:
+
+Reason:
+
+STEP 10 - CONTENT ENGINE
+
+Create a 30 day social media content plan using the generated ideas.
+
+Include:
+
+* post idea
+* content type
+* goal of the post
+
+Example:
+
+Day 1
+Post Idea:
+Content Type:
+Goal:
+
+OUTPUT FORMAT
+
+SECTION 1 - Business Context
+SECTION 2 - Audience Psychology Map
+SECTION 3 - Content Pillars
+SECTION 4 - Viral Hook Library
+SECTION 5 - Content Ideas
+SECTION 6 - Viral Post Formats
+SECTION 7 - Engagement Triggers
+SECTION 8 - Platform Strategy
+SECTION 9 - Meta Ads Targeting Intelligence
+SECTION 10 - 30 Day Content Plan
+
+QUALITY REQUIREMENTS
+
+The output must:
+
+* reflect real audience psychology
+* generate engaging content ideas
+* include practical social media strategies
+* provide realistic advertising targeting suggestions
+* be useful for both organic content and paid advertising campaigns</div>
+        <button class="copy-btn" onclick="copyPrompt('p1', this)">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+          <span>Copy System Prompt</span>
+        </button>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
