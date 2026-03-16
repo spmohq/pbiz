@@ -1,0 +1,2572 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Digital Asset Creator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0e27;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background: #ffffff;
+            border: 3px solid #0a0e27;
+            padding: 20px 36px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 24px;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .top-bar-brand {
+            font-weight: 800;
+            font-size: 16px;
+            color: #0a0e27;
+            letter-spacing: -0.3px;
+        }
+
+        .top-bar-links {
+            display: flex;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .top-bar-links a {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: color 0.15s;
+        }
+
+        .top-bar-links a:hover {
+            color: #ff2d2d;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #ff2d2d 0%, #e01e1e 100%);
+            padding: 80px 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 6px 6px 0 #ff2d2d;
+        }
+
+        .hero h1 {
+            font-size: 58px;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-subtitle {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 48px;
+            line-height: 1.5;
+            max-width: 720px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        /* Keyword Input Section */
+        .keyword-section {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .input-wrapper {
+            position: relative;
+            margin-bottom: 16px;
+        }
+
+        .keyword-input {
+            width: 100%;
+            padding: 20px 100px 20px 24px;
+            font-size: 17px;
+            background: #ffffff;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            color: #0a0e27;
+            transition: all 0.2s;
+            font-weight: 600;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .keyword-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .keyword-input:focus {
+            outline: none;
+            border-color: #00d9ff;
+            box-shadow: 6px 6px 0 #0a0e27;
+        }
+
+        .reset-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background: #1a0a0a;
+            border: 2px solid #ff2d2d;
+            color: #ff2d2d;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .reset-btn:hover {
+            background: #2a1010;
+            border-color: #ff2d2d;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .generate-btn {
+            width: 100%;
+            padding: 22px;
+            background: #ffffff;
+            color: #ff2d2d;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 #0a0e27;
+        }
+
+        .generate-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Asset Cards */
+        .assets-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            margin-top: 48px;
+        }
+
+        .asset-card {
+            background: #ffffff;
+            border: 3px solid #0a0e27;
+            border-radius: 20px;
+            padding: 40px;
+            transition: all 0.2s;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .asset-card:hover {
+            border-color: #ff2d2d;
+            box-shadow: 6px 6px 0 #ff2d2d;
+            transform: translateY(-4px);
+        }
+
+        .asset-header {
+            margin-bottom: 32px;
+        }
+
+        .asset-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #00d9ff 0%, #00b8d9 100%);
+            color: #0a0e27;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 900;
+            letter-spacing: 1.2px;
+            margin-bottom: 16px;
+            box-shadow: 4px 4px 0 #00d9ff;
+        }
+
+        .asset-title {
+            font-size: 32px;
+            color: #0a0e27;
+            margin-bottom: 14px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+        }
+
+        .asset-summary {
+            font-size: 17px;
+            color: #4a5568;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Prompt Sections */
+        .prompt-section {
+            margin-bottom: 32px;
+        }
+
+        .prompt-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .prompt-label {
+            font-size: 15px;
+            font-weight: 800;
+            color: #0a0e27;
+            letter-spacing: 0.3px;
+        }
+
+        .prompt-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .expand-btn, .copy-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .expand-btn {
+            background: #1a1f3a;
+            color: #a0aec0;
+            border: 3px solid #0a0e27;
+        }
+
+        .expand-btn:hover {
+            background: #1a1f3a;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .copy-btn {
+            background: linear-gradient(135deg, #ff2d2d 0%, #e01e1e 100%);
+            color: white;
+            box-shadow: 4px 4px 0 #ff2d2d;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 #ff2d2d;
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .prompt-content {
+            background: #0a0e27;
+            border: 3px solid #0a0e27;
+            border-radius: 12px;
+            padding: 24px;
+            font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+            font-size: 13.5px;
+            line-height: 1.8;
+            color: #ffffff;
+            white-space: pre-wrap;
+            max-height: 180px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s;
+        }
+
+        .prompt-content.expanded {
+            max-height: none;
+        }
+
+        .prompt-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(to bottom, transparent, #0a0e27);
+            pointer-events: none;
+        }
+
+        .prompt-content.expanded::after {
+            display: none;
+        }
+
+        /* Builder Input */
+        .builder-section {
+            margin-bottom: 28px;
+        }
+
+        .builder-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0a0e27;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 0.2px;
+        }
+
+        .builder-input {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 15px;
+            background: #ffffff;
+            border: 3px solid #0a0e27;
+            border-radius: 10px;
+            color: #0a0e27;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .builder-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .builder-input:focus {
+            outline: none;
+            border-color: #ff2d2d;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .generate-prompt2-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #00d9ff 0%, #00b8d9 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 4px 4px 0 #00d9ff;
+            margin-top: 12px;
+        }
+
+        .generate-prompt2-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 #00d9ff;
+        }
+
+        .generate-prompt2-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: linear-gradient(135deg, #00d9ff 0%, #00b8d9 100%);
+            color: white;
+            padding: 18px 32px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 15px;
+            box-shadow: 8px 8px 0 #00d9ff;
+            z-index: 1000;
+            animation: slideIn 0.3s, slideOut 0.3s 2.7s;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        /* Footer CTA */
+        .footer-cta {
+            background: #0866FF;
+            padding: 64px 56px;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 56px;
+            box-shadow: 8px 8px 0 #0866FF;
+        }
+
+        .footer-cta h3 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 16px;
+            font-weight: 900;
+            letter-spacing: -0.8px;
+        }
+
+        .footer-cta p {
+            font-size: 18px;
+            color: #ffffff;
+            margin-bottom: 32px;
+            line-height: 1.5;
+            font-weight: 500;
+            opacity: 0.95;
+        }
+
+        .footer-btn {
+            display: inline-block;
+            padding: 18px 48px;
+            background: #ffffff;
+            color: #00d9ff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 900;
+            font-size: 17px;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 4px 4px 0 #0a0e27;
+        }
+
+        .footer-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 6px 6px 0 #0a0e27;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 38px;
+                letter-spacing: -1.5px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero {
+                padding: 56px 32px;
+            }
+
+            .asset-title {
+                font-size: 26px;
+            }
+
+            .asset-card {
+                padding: 28px;
+            }
+
+            .keyword-input {
+                padding: 16px 95px 16px 20px;
+                font-size: 15px;
+            }
+
+            .reset-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .prompt-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .expand-btn, .copy-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="top-bar-brand">EASY DIGITAL ASSET CREATOR</div>
+            <div class="top-bar-links">
+                <a href="https://chat.openai.com" target="_blank">ChatGPT</a>
+                <a href="https://claude.ai" target="_blank">Claude</a>
+                <a href="https://gemini.google.com" target="_blank">Gemini</a>
+                <a href="https://perplexity.ai" target="_blank">Perplexity</a>
+                <a href="https://chat.deepseek.com" target="_blank">DeepSeek</a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero">
+            <h1>Create High-Value Digital Assets FAST</h1>
+            <p class="hero-subtitle">Generate 7 types of premium digital assets that you can sell or give away. Frameworks, systems, checklists, worksheets, decision trees, maps, and shortcuts.</p>
+            
+            <div class="keyword-section">
+                <div class="input-wrapper">
+                    <input type="text" id="keywordInput" class="keyword-input" placeholder="Enter your niche (e.g., email marketing, real estate, fitness)">
+                    <button class="reset-btn" onclick="resetKeyword()">Clear</button>
+                </div>
+                <button class="generate-btn" onclick="generateAllPrompts()">Generate All Assets</button>
+            </div>
+        </div>
+
+        <!-- Assets Grid -->
+        <div class="assets-grid" id="assetsGrid"></div>
+
+        <!-- Footer CTA -->
+        <div class="footer-cta">
+            <h3>Join The (FREE) Private Community</h3>
+            <a href="https://www.facebook.com/groups/markhesscustomergroup" target="_blank" class="footer-btn">Join Now</a>
+        </div>
+    </div>
+
+    <script>
+        // Asset data structure
+        const assets = [
+            {
+                id: 1,
+                assetType: "Frameworks",
+                summary: "Create acronym-based frameworks that feel like unfair advantages and provide instant clarity for complex topics.",
+                prompt1Template: `You are an elite naming strategist who creates viral framework names that sell for $297+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 framework ideas so good they feel like UNFAIR ADVANTAGES.
+
+REQUIREMENTS:
+✓ 5 must be acronym-based (spell a real, relevant word)
+✓ 2 must be non-acronym names  
+✓ Each must be instantly sellable to overwhelmed [keyword] beginners
+✓ Each description MUST mention "[keyword]" multiple times
+✓ For acronyms: ALWAYS write out what each letter stands for
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [ACRONYM] Framework
+Acronym Breakdown: [Write what each letter means]
+What it does: [Mention [keyword] - explain the transformation]
+Why it's irresistible: [Mention [keyword] - the psychological hook]
+The outcome: [Mention [keyword] - the end result they crave]
+
+EXAMPLE for "weight loss":
+
+1)
+Name: The S.H.R.E.D. Framework
+Acronym Breakdown: 
+- S = Simplify your eating decisions
+- H = Habit-stack your movement  
+- R = Remove hidden calories
+- E = Elevate your protein intake
+- D = Design your environment for weight loss
+What it does: A 5-step behavioral system for weight loss that removes willpower from the equation and makes fat loss automatic through environment design.
+Why it's irresistible: Unlike typical weight loss advice that requires constant discipline, this framework makes weight loss the path of least resistance by rewiring your surroundings.
+The outcome: Predictable weight loss results (10-20 lbs in 60 days) without tracking calories, following restrictive diets, or white-knuckling your way through cravings.
+
+2)
+Name: The Metabolic Reset Blueprint
+What it does: A strategic 21-day protocol for weight loss that fixes the 3 hormonal blocks keeping your body in fat-storage mode despite clean eating.
+Why it's irresistible: It explains why previous weight loss attempts failed (hormonal resistance) and provides the exact fix most weight loss programs ignore.
+The outcome: Restart your weight loss progress after hitting a plateau, losing 7-12 lbs in the first 3 weeks by addressing root metabolic issues.
+
+Now generate 7 frameworks for: [keyword]
+
+Make them SPECIFIC. Make them SELLABLE. Make them feel like SHORTCUTS.`,
+                prompt2Template: `Act as a world-class instructional designer and elite direct-response strategist.
+
+Create a PDF-ready, expert-grade, professional final draft for this framework:
+Framework name: [chosen_idea]
+Keyword/topic: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $47-$197
+- Zero fluff, pure value
+- Professional tone but conversational
+- Actionable within 24 hours
+- Feels like an unfair advantage
+
+AUDIENCE:
+Busy [keyword] beginners who are overwhelmed, skeptical from past failures, and need a clear path that works WITHOUT massive time investment or confusion.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Framework Name]
+The [Specific Outcome] System for [keyword]
+
+One-line promise: [Write a compelling benefit-driven promise]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 THE PROBLEM
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+List 5-7 specific frustrations your [keyword] audience faces that this framework solves.
+
+Use bullets. Be SPECIFIC. Make them nod their head "yes, that's me."
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ WHO THIS IS FOR
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+5-6 bullets describing the ideal person (their situation, not demographics)
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🧠 FRAMEWORK OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[If acronym: Break down each letter with 2-3 sentences each]
+[If non-acronym: Explain the 3-5 core pillars]
+
+Make this VISUAL - use spacing, bullets, clear sections.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ THE FRAMEWORK IN ACTION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+For each component of the framework (5-7 components):
+
+COMPONENT [X]: [Name]
+├─ What it is: [2 sentences]
+├─ Why it matters: [The impact/benefit]
+├─ How to implement: [3-5 action steps]
+└─ Success indicator: [How they know it's working]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 THE 24-HOUR QUICKSTART
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+5 steps they can do TODAY to see immediate progress with [keyword].
+
+Make these TINY and EASY. Remove all friction.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ COMMON MISTAKES & FIXES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Mistake 1: [What people do wrong]
+→ Fix: [What to do instead]
+
+[Repeat for 5-7 mistakes]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💡 REAL EXAMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+3 detailed examples showing this framework applied to [keyword]:
+
+Example 1: [Scenario]
+- Starting point: [Where they were]
+- Framework application: [What they did using each component]
+- Result: [Specific outcome]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📅 7-DAY IMPLEMENTATION PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Day 1: [Specific focus + 3 actions]
+Day 2: [Specific focus + 3 actions]
+[Continue through Day 7]
+
+Make this RIDICULOUSLY specific.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 ONE-PAGE FRAMEWORK SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Condensed reference guide (bullet format):
+→ Framework name & core concept
+→ Key components (with 1-line each)
+→ Quickstart steps
+→ Success metrics
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: TROUBLESHOOTING GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+"What if [common obstacle]?"
+Answer: [Solution]
+
+[5-7 troubleshooting Q&As]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+WRITING STYLE:
+- Short sentences (15 words max)
+- Conversational but authoritative
+- Specific numbers/timeframes
+- Action-oriented language
+- Zero jargon
+- Lots of white space
+
+FORMAT AS CLEAN TEXT - no markdown symbols, just clean spacing and simple bullets/dashes.
+
+This should be COPY-PASTE ready for a PDF creator.`
+            },
+            {
+                id: 2,
+                assetType: "Systems",
+                summary: "Build step-by-step systems that run on autopilot and deliver repeatable results with minimal thinking required.",
+                prompt1Template: `You are an elite systems architect who creates "done-for-you" business systems that sell for $497+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 system ideas that feel like PLUG-AND-PLAY SOLUTIONS that run on autopilot.
+
+REQUIREMENTS:
+✓ 5 must be acronym-based (spell a word that implies SPEED, ACTION, or AUTOMATION)
+✓ 2 must be non-acronym names
+✓ Each must promise REPEATABLE RESULTS with minimal ongoing effort
+✓ Each description MUST mention "[keyword]" multiple times
+✓ For acronyms: ALWAYS write out what each letter stands for
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [ACRONYM] System
+Acronym Breakdown: [Write what each letter means]
+What it does: [Mention [keyword] - explain the automation/system]
+Why it's irresistible: [Mention [keyword] - emphasize "runs itself" angle]
+The outcome: [Mention [keyword] - the predictable result]
+
+EXAMPLE for "email marketing":
+
+1)
+Name: The F.L.O.W. System
+Acronym Breakdown:
+- F = Formula-based email templates
+- L = List segmentation triggers
+- O = Optimization tracking dashboard
+- W = Weekly automation sequences
+What it does: A complete email marketing system that automatically sends the right message to the right person at the right time based on behavior triggers, eliminating manual email marketing decisions.
+Why it's irresistible: Unlike traditional email marketing that requires constant writing and sending, this system turns email marketing into a self-running machine that works while you sleep.
+The outcome: Consistent email marketing revenue (15-30% open rates, 3-5% click rates) without writing fresh emails weekly or managing complex email marketing campaigns manually.
+
+2)
+Name: The Evergreen Email Engine
+What it does: A 90-day email marketing system that converts cold subscribers into buyers through a pre-built sequence that handles objections, builds trust, and makes offers automatically.
+Why it's irresistible: It removes the "what should I email today?" paralysis that kills most email marketing efforts by providing a complete done-for-you email marketing roadmap.
+The outcome: Turn email marketing from a time drain into a 2-hour monthly maintenance task that generates predictable sales without constant content creation.
+
+Now generate 7 systems for: [keyword]
+
+Make them feel TURNKEY. Make them feel AUTOMATED. Make them feel like NO-BRAINER investments.`,
+                prompt2Template: `You are an elite operations strategist who builds $497 "done-for-you" business systems.
+
+Create a COMPLETE, PLUG-AND-PLAY, READY-TO-SELL system PDF for:
+
+System: [chosen_idea]
+Niche: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $97-$497
+- Feels like a turnkey operating system
+- Repeatable, predictable results
+- Removes decisions and guesswork
+- Works on autopilot once set up
+
+AUDIENCE:
+Overwhelmed [keyword] practitioners who are DONE with inconsistent results and need a PROVEN system they can follow like a recipe to get reliable outcomes.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[System Name]
+The Complete Operating System for [keyword]
+
+Tagline: [Specific promise - what it automates/eliminates]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+❌ WHAT THIS SYSTEM REPLACES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+List 7-10 things they NO LONGER have to do manually with [keyword]:
+
+→ No more [manual task]
+→ No more [decision fatigue]
+→ No more [time-consuming process]
+
+Be SPECIFIC about what gets automated or eliminated.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 THE OUTCOME THIS PRODUCES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+5-7 bullet points of SPECIFIC results:
+
+→ [Metric/outcome with numbers]
+→ [Time saved with specifics]
+→ [Consistency improvement]
+
+Use real numbers. Be bold but believable.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ THE SYSTEM IN ONE SENTENCE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Write a clear, compelling one-sentence description of how the system works]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🔄 THE SYSTEM STAGES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Break the system into 5-7 stages. For each:
+
+STAGE [X]: [Stage Name]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Goal: [What this stage accomplishes]
+
+Exact Steps:
+1. [Specific action with details]
+2. [Specific action with details]
+3. [Specific action with details]
+[Continue for 5-8 steps]
+
+Time Required: [Be specific - "45 minutes" not "less than an hour"]
+
+Done Criteria: [Checklist of 3-5 items that show this stage is complete]
+☐ [Observable outcome]
+☐ [Observable outcome]
+☐ [Observable outcome]
+
+Triggers for Next Stage: [What happens to move to the next stage]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ 20-MINUTE MINIMUM VIABLE VERSION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+"Don't have time for the full system? Start here."
+
+The bare-bones version that produces 70% of results in 20 minutes:
+
+1. [Absolutely essential step 1]
+2. [Absolutely essential step 2]
+3. [Absolutely essential step 3]
+4. [Absolutely essential step 4]
+5. [Absolutely essential step 5]
+
+This gets [keyword] working IMMEDIATELY while they build the full system.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🤖 AUTOMATION & SIMPLIFICATION LAYER
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+How to make this system run with EVEN LESS effort:
+
+Tools That Automate Steps:
+→ [Tool name]: Automates [specific step] - saves [time]
+→ [Tool name]: Handles [specific task] - eliminates [manual work]
+[List 5-7 tools/tactics]
+
+Simplification Hacks:
+→ [Hack]: Reduces [stage] from [time] to [time]
+→ [Hack]: Eliminates need for [complexity]
+[List 3-5 simplification strategies]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🔧 TROUBLESHOOTING GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+STUCK POINT: [Common problem in [keyword]]
+├─ Why it happens: [Explanation]
+├─ Quick fix: [Immediate solution]
+└─ Prevention: [How to avoid it]
+
+[Repeat for 7-10 common stuck points]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💡 SYSTEM IN ACTION: 3 REAL EXAMPLES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Example 1: [Specific scenario in [keyword]]
+━━━━━━━━━━━━━━━━━━━━━━━━
+Starting point: [Where they were]
+System application:
+  - Stage 1: [What they did]
+  - Stage 2: [What they did]
+  - Stage 3: [What they did]
+  [Continue through stages]
+Result: [Specific outcome with numbers/details]
+Time investment: [How long it took]
+
+[Repeat for 3 different scenarios]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 ONE-PAGE OPERATING CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[System Name] - Daily/Weekly Operations
+
+DAILY:
+☐ [Action item]
+☐ [Action item]
+☐ [Action item]
+
+WEEKLY:
+☐ [Action item]
+☐ [Action item]
+☐ [Action item]
+
+MONTHLY:
+☐ [Action item]
+☐ [Action item]
+
+System Health Check:
+☐ [Metric to monitor]
+☐ [Metric to monitor]
+☐ [Metric to monitor]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: IF/THEN DECISION TREE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+"When this happens, do this."
+
+IF [situation occurs] → THEN [specific action]
+IF [situation occurs] → THEN [specific action]
+IF [situation occurs] → THEN [specific action]
+
+[Create 10-15 if/then rules for common decisions]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+WRITING STYLE:
+- Recipe-style clarity (do this, then this, then this)
+- Specific tools/numbers/timeframes
+- Observable success criteria
+- Zero ambiguity
+- Assumes zero prior knowledge
+- Checklists everywhere
+
+FORMAT AS CLEAN TEXT - no markdown symbols, just clean spacing and simple bullets/dashes.
+
+This should feel like BUYING AN OPERATING SYSTEM, not a guide.`
+            },
+            {
+                id: 3,
+                assetType: "Checklists",
+                summary: "Generate mistake-proof checklists that tell people exactly what to do, preventing errors and guaranteeing clean execution.",
+                prompt1Template: `You are an elite checklist architect who creates "mistake-proof" execution tools that sell for $197+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 checklist pack ideas that feel like INSURANCE POLICIES against failure.
+
+REQUIREMENTS:
+✓ Each name must be vivid, specific, and instantly communicate what it does
+✓ Each must PREVENT mistakes and GUARANTEE clean execution
+✓ Each description MUST mention "[keyword]" multiple times
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [Vivid, Specific Name] Checklist
+What it's for: [Mention [keyword] - the specific use case]
+What it prevents: [Mention [keyword] - the costly mistakes it stops]
+What it guarantees: [Mention [keyword] - the clean outcome]
+
+EXAMPLE for "podcast launch":
+
+1)
+Name: The Episode Quality Control Checklist
+What it's for: A post-production checklist for podcast launch that catches audio errors, metadata mistakes, and formatting issues before publishing each episode.
+What it prevents: Embarrassing podcast launch errors like wrong episode numbers, broken show notes links, or audio glitches that damage your podcast launch credibility.
+What it guarantees: Every podcast launch episode meets professional standards and publishes error-free, maintaining consistent quality your audience expects.
+
+2)
+Name: The Pre-Launch Verification Checklist
+What it's for: A pre-launch verification checklist for podcast launch that ensures every technical detail is correct before your first episode goes live.
+What it prevents: The 12 most common podcast launch mistakes that cause delays, rejections from directories, or poor first impressions that kill momentum.
+What it guarantees: Your podcast launch passes all platform requirements on first submission, goes live on schedule, and looks professional from day one.
+
+Now generate 7 checklists for: [keyword]
+
+Make them feel ESSENTIAL. Make them feel like PROTECTION. Make them impossible to skip.`,
+                prompt2Template: `You are an elite quality control specialist who creates $197 "mistake-proof" checklist systems.
+
+Create a COMPLETE, PROFESSIONAL, READY-TO-SELL checklist pack for:
+
+Checklist Pack: [chosen_idea]
+Niche: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $47-$197
+- Prevents costly mistakes
+- Observable, verifiable items only
+- Professional format
+- Feels like a safety net
+
+AUDIENCE:
+[keyword] practitioners who are TERRIFIED of missing critical steps, making expensive mistakes, or producing subpar work. They need CERTAINTY that nothing falls through the cracks.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Checklist Pack Name]
+The Complete Quality Assurance System for [keyword]
+
+Tagline: Never Miss a Critical Step in [keyword] Again
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 HOW TO USE THIS CHECKLIST PACK
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+This pack contains 6 specialized checklists for different phases of [keyword]:
+
+1. The Setup Checklist - Use BEFORE starting
+2. The Execution Checklist - Use DURING the process
+3. The Quality Control Checklist - Use AFTER completion
+4. The Pre-Launch Checklist - Use BEFORE going live
+5. The Mistake-Proof Checklist - Use to VERIFY nothing was missed
+6. The Master Checklist - Use for QUICK reference
+
+Check items as ☑ when complete. If you can't check it, don't move forward.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #1: THE SETUP CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use this BEFORE starting any [keyword] project.
+
+☐ [Specific observable item - action verb]
+☐ [Specific observable item - action verb]
+☐ [Specific observable item - action verb]
+☐ [Specific observable item - action verb]
+☐ [Specific observable item - action verb]
+
+Why these matter: [2-3 sentences explaining the impact]
+
+☐ [Item 6]
+☐ [Item 7]
+☐ [Item 8]
+☐ [Item 9]
+☐ [Item 10]
+
+Why these matter: [2-3 sentences explaining the impact]
+
+[Total: 12-15 items]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #2: THE EXECUTION CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use this DURING active work on [keyword].
+
+Break into logical sections with headers:
+
+SECTION: [Phase Name]
+━━━━━━━━━━━━━━━━━━━━━━━━
+☐ [Observable action]
+☐ [Observable action]
+☐ [Observable action]
+☐ [Observable action]
+☐ [Observable action]
+
+Why these matter: [Brief explanation]
+
+SECTION: [Phase Name]
+━━━━━━━━━━━━━━━━━━━━━━━━
+[Continue pattern]
+
+[Total: 25-30 items across 4-5 sections]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #3: QUALITY CONTROL CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use this AFTER completing work, before delivery.
+
+☐ [Verification item - must be observable]
+☐ [Verification item - must be observable]
+☐ [Verification item - must be observable]
+☐ [Verification item - must be observable]
+☐ [Verification item - must be observable]
+
+Why these matter: [Explanation of quality impact]
+
+☐ [Items 6-12]
+
+[Total: 15-18 items]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #4: PRE-LAUNCH CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Use this BEFORE publishing/launching/delivering [keyword] work.
+
+CRITICAL ITEMS (Must be 100%):
+☐ [Non-negotiable item]
+☐ [Non-negotiable item]
+☐ [Non-negotiable item]
+☐ [Non-negotiable item]
+☐ [Non-negotiable item]
+
+PROFESSIONAL POLISH:
+☐ [Polish item]
+☐ [Polish item]
+☐ [Polish item]
+☐ [Polish item]
+☐ [Polish item]
+
+[Total: 12-15 items]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #5: MISTAKE-PROOF CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+The 15 most common [keyword] mistakes - verify NONE apply:
+
+☐ Confirmed NOT doing: [Common mistake 1]
+☐ Confirmed NOT doing: [Common mistake 2]
+☐ Confirmed NOT doing: [Common mistake 3]
+☐ Confirmed NOT doing: [Common mistake 4]
+☐ Confirmed NOT doing: [Common mistake 5]
+
+Why avoiding these matters: [Brief explanation]
+
+☐ [Items 6-15]
+
+[Total: 15 items]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+✅ CHECKLIST #6: MASTER CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+One-page condensed version for quick verification.
+
+PHASE 1: SETUP
+☐ [Key item]
+☐ [Key item]
+☐ [Key item]
+
+PHASE 2: EXECUTION  
+☐ [Key item]
+☐ [Key item]
+☐ [Key item]
+
+PHASE 3: QUALITY CHECK
+☐ [Key item]
+☐ [Key item]
+☐ [Key item]
+
+PHASE 4: LAUNCH
+☐ [Key item]
+☐ [Key item]
+☐ [Key item]
+
+[Total: 15-20 most critical items across all phases]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: RED FLAG DETECTION LIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+If you see ANY of these in your [keyword] work, STOP and fix:
+
+🚩 [Red flag indicator] → Fix: [Solution]
+🚩 [Red flag indicator] → Fix: [Solution]
+🚩 [Red flag indicator] → Fix: [Solution]
+🚩 [Red flag indicator] → Fix: [Solution]
+🚩 [Red flag indicator] → Fix: [Solution]
+
+[10-12 red flags total]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+CHECKLIST ITEM RULES:
+- Start with action verbs
+- Must be OBSERVABLE (can see/verify completion)
+- Specific (not vague)
+- One action per checkbox
+- No "ensure" or "make sure" - say WHAT to do
+
+GOOD: ☐ Test all links open in new tab
+BAD: ☐ Make sure links work
+
+FORMAT AS CLEAN TEXT with checkboxes (☐) - ready to print and use.`
+            },
+            {
+                id: 4,
+                assetType: "Worksheets",
+                summary: "Create fill-in-the-blank worksheets that guide users through strategic thinking, planning, and decision-making step-by-step.",
+                prompt1Template: `You are an elite worksheet designer who creates "thinking tools" that sell for $97+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 worksheet ideas that feel like GUIDED STRATEGIC SESSIONS with an expert.
+
+REQUIREMENTS:
+✓ Each name must be vivid, specific, and instantly communicate what it does
+✓ Each must WALK USERS THROUGH complex thinking step-by-step
+✓ Each description MUST mention "[keyword]" multiple times
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [Vivid, Specific Name] Worksheet
+What it does: [Mention [keyword] - the strategic thinking it guides]
+Why it's powerful: [Mention [keyword] - the clarity/decisions it produces]
+The output: [Mention [keyword] - the finished deliverable they create]
+
+EXAMPLE for "content strategy":
+
+1)
+Name: The Content Audit & Analysis Worksheet
+What it does: A detailed evaluation framework for content strategy that scores your existing content across 15 metrics (engagement, SEO value, conversion potential) to identify what's working and what to cut.
+Why it's powerful: Most content strategy efforts waste time on low-performing content formats—this worksheet reveals your highest-ROI content types so you double down on what actually drives results.
+The output: A prioritized content strategy action plan showing exactly which content to create more of, which to improve, and which to eliminate from your content strategy completely.
+
+2)
+Name: The Audience Pain Point Excavator Worksheet
+What it does: A fill-in-the-blank strategic planning worksheet for content strategy that forces you to define your unique angle, target audience pain points, and content themes before creating a single piece of content.
+Why it's powerful: Instead of random content strategy posting that leads nowhere, this worksheet ensures every piece of content ladders up to business goals and audience needs you've clearly defined.
+The output: A completed one-page content strategy blueprint that becomes your north star for all content decisions, eliminating "what should I post?" paralysis and random content strategy execution.
+
+Now generate 7 worksheets for: [keyword]
+
+Make them feel like STRATEGIC COACHING SESSIONS. Make them EXTRACT clarity from chaos.`,
+                prompt2Template: `You are an elite strategic planning consultant who creates $97 "thinking tools" worksheets.
+
+Create a COMPLETE, PROFESSIONAL, READY-TO-SELL worksheet pack for:
+
+Worksheet: [chosen_idea]
+Niche: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $47-$97
+- Fill-in-the-blank format
+- Guides strategic thinking
+- Produces a finished deliverable
+- Feels like a coaching session
+
+AUDIENCE:
+[keyword] practitioners who need to THINK THROUGH complex decisions but don't know where to start. They need a framework that asks the right questions in the right order to extract clarity from confusion.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Worksheet Name]
+Strategic Planning Worksheet for [keyword]
+
+Tagline: [Specific outcome - what clarity/plan they'll create]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 HOW TO USE THIS WORKSHEET
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+This worksheet walks you through [specific strategic process] for [keyword].
+
+What you'll need:
+→ 45-60 minutes of focused time
+→ [Any materials/data needed]
+→ Honest answers (no one sees this but you)
+
+What you'll have when done:
+→ [Specific deliverable 1]
+→ [Specific deliverable 2]
+→ [Specific deliverable 3]
+
+Instructions:
+1. Work through sections in order
+2. Fill in ALL blanks (skipping = incomplete strategy)
+3. Be specific (vague answers = vague results)
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 1: [STRATEGIC FOUNDATION]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions for this section - what they're defining]
+
+1. The primary goal of my [keyword] efforts is:
+
+   _______________________________________________
+
+   _______________________________________________
+
+2. Success looks like (be specific with numbers/outcomes):
+
+   _______________________________________________
+
+   _______________________________________________
+
+3. The biggest obstacle currently blocking this goal:
+
+   _______________________________________________
+
+   _______________________________________________
+
+4. [Continue with 5-8 strategic questions]
+
+   _______________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 2: [ANALYSIS/ASSESSMENT]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions - what they're evaluating]
+
+Current State Assessment:
+
+What's working in my [keyword] right now:
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+What's NOT working:
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+Opportunities I'm not leveraging:
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 3: [STRATEGIC CHOICES]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions - decisions they're making]
+
+Decision Matrix:
+
+For each option, rate 1-10:
+
+OPTION A: ______________________________
+
+- Feasibility (can I actually do this?): ____ / 10
+- Impact (will this move the needle?): ____ / 10  
+- Speed (how fast can I see results?): ____ / 10
+- Resources required (time/money): ____ / 10
+
+TOTAL SCORE: ____ / 40
+
+[Repeat for Options B, C, D]
+
+My strategic choice (based on highest score):
+
+_______________________________________________
+
+Why this beats the alternatives:
+
+_______________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 4: [ACTION PLANNING]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions - converting strategy to action]
+
+Based on my strategic choice, here's my action plan:
+
+IMMEDIATE (Next 7 Days):
+1. _____________________________________________
+   Deadline: ____________ Done: ☐
+2. _____________________________________________
+   Deadline: ____________ Done: ☐
+3. _____________________________________________
+   Deadline: ____________ Done: ☐
+
+SHORT-TERM (Next 30 Days):
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+LONG-TERM (Next 90 Days):
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 5: [RESOURCE ALLOCATION]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions - planning resources]
+
+What I need to make this work:
+
+TIME BUDGET:
+→ Daily commitment: _______ hours/minutes
+→ Weekly blocks: _______ hours on _______days
+
+FINANCIAL BUDGET:
+→ Tools/software: $________
+→ Training/education: $________
+→ Outsourcing/help: $________
+→ TOTAL INVESTMENT: $________
+
+SKILLS I NEED TO DEVELOP:
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+PEOPLE I NEED TO INVOLVE:
+1. _____________________________________________
+2. _____________________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 6: [SUCCESS METRICS]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions - defining measurement]
+
+How I'll measure progress:
+
+WEEKLY METRICS (check every week):
+☐ _____________________________________________
+☐ _____________________________________________
+☐ _____________________________________________
+
+MONTHLY METRICS (check every month):
+☐ _____________________________________________
+☐ _____________________________________________
+
+ADJUSTMENT TRIGGERS:
+
+If _____________ happens, I will _____________
+
+If _____________ happens, I will _____________
+
+If _____________ happens, I will _____________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SECTION 7: [COMMITMENT & ACCOUNTABILITY]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Final commitment:
+
+I commit to executing this [keyword] strategy because:
+
+_______________________________________________
+
+_______________________________________________
+
+The cost of NOT doing this is:
+
+_______________________________________________
+
+My accountability partner is: ________________
+
+Review date: _______________
+
+Signature: _________________ Date: __________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 ONE-PAGE SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Instructions: Transfer your key decisions here for quick reference]
+
+MY [KEYWORD] STRATEGY AT A GLANCE:
+
+Primary Goal: ________________________________
+
+Core Strategy: ________________________________
+
+Top 3 Actions:
+1. _____________________________________________
+2. _____________________________________________
+3. _____________________________________________
+
+Success Metric: ________________________________
+
+Timeline: ______________________________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: COMMON PITFALLS CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Avoid these [keyword] strategy mistakes:
+
+☐ Verified I'm NOT: [Common mistake 1]
+☐ Verified I'm NOT: [Common mistake 2]
+☐ Verified I'm NOT: [Common mistake 3]
+☐ Verified I'm NOT: [Common mistake 4]
+☐ Verified I'm NOT: [Common mistake 5]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+WORKSHEET DESIGN RULES:
+- Every section has clear instructions
+- Blank lines appropriately sized
+- Questions flow logically (foundation → analysis → decision → action)
+- Produces a FINISHED strategic document when complete
+- Can be printed and filled by hand OR typed into
+
+FORMAT AS CLEAN TEXT with blank lines (___) for fill-in sections.
+
+This should feel like a $500/hour STRATEGY CONSULTATION compressed into a worksheet.`
+            },
+            {
+                id: 5,
+                assetType: "Decision Trees",
+                summary: "Design decision trees that eliminate overthinking by providing clear 'if this, do this' paths to action.",
+                prompt1Template: `You are an elite decision architect who creates "analysis paralysis cure" tools that sell for $127+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 decision tree ideas that ELIMINATE overthinking and deliver INSTANT CLARITY.
+
+REQUIREMENTS:
+✓ Each name must be vivid, specific, and instantly communicate the decision it solves
+✓ Each must convert CONFUSION into CLEAR NEXT STEPS
+✓ Each description MUST mention "[keyword]" multiple times
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [Vivid, Specific Name] Decision Tree
+The decision it solves: [Mention [keyword] - the specific choice paralyzing them]
+What it eliminates: [Mention [keyword] - the confusion/overthinking it stops]
+The output: [Mention [keyword] - the clear action path they get]
+
+EXAMPLE for "hiring employees":
+
+1)
+Name: The Candidate Qualification Decision Tree
+What it does: A 12-question evaluation framework for hiring employees that scores candidates across culture fit, skill level, growth potential, and compensation expectations to identify your top choice.
+What it eliminates: The hiring employees mistake of choosing based on "gut feel" or the first decent candidate, which leads to costly mis-hires and team disruption.
+The output: A ranked shortlist of candidates with objective scores showing exactly who to hire, who to keep as backup, and who to pass on in your hiring employees process.
+
+2)
+Name: The Hire vs. Outsource Flowchart Decision Tree
+What it does: A 4-question flowchart for hiring employees that routes you to the exact hiring strategy (full-time, contractor, agency, or automation) based on your specific constraints and goals.
+What it eliminates: The hiring employees paralysis of "Should I hire now or wait? Full-time or freelance? Junior or senior?" that keeps critical roles unfilled for months.
+The output: A definitive answer in under 5 minutes on whether to hire, who to hire, how to structure the role, and where to find candidates for your specific hiring employees situation.
+
+Now generate 7 decision trees for: [keyword]
+
+Make them STOP OVERTHINKING. Make them produce DEFINITIVE ANSWERS.`,
+                prompt2Template: `You are an elite decision systems designer who creates $127 "analysis paralysis cure" tools.
+
+Create a COMPLETE, VISUAL, READY-TO-SELL decision tree for:
+
+Decision Tree: [chosen_idea]
+Niche: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $67-$127
+- Eliminates overthinking completely
+- Produces definitive answers
+- Crystal-clear visual flow
+- Takes 5-10 minutes to use
+
+AUDIENCE:
+[keyword] practitioners who are STUCK in analysis paralysis, researching forever but never deciding. They need a logical framework that makes the decision FOR them based on their specific situation.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Decision Tree Name]
+The "Stop Overthinking" Decision Framework for [keyword]
+
+Tagline: Get Your Answer in 5 Minutes, Not 5 Weeks
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 HOW TO USE THIS DECISION TREE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+This decision tree eliminates [keyword] analysis paralysis.
+
+What you need:
+→ 5-10 minutes
+→ Honest answers to simple questions
+→ Pen/paper to track your path
+
+How it works:
+1. Start at Node 1
+2. Answer the question honestly
+3. Follow the arrow to your next node
+4. Repeat until you hit an END node
+5. Your END node = your definitive answer + action plan
+
+Rules:
+→ Don't second-guess answers (trust the logic)
+→ Follow the path (don't skip nodes)
+→ Your first answer is usually right
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🌳 THE DECISION TREE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Build a 15-25 node decision tree with clear numbered flow]
+
+Format each node like this:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+NODE 1: [Clear question about their situation]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Question: [Simple yes/no OR multiple choice question]
+
+→ If [Answer A]: Go to Node [X]
+→ If [Answer B]: Go to Node [Y]
+→ If [Answer C]: Go to Node [Z]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+NODE 2: [Next question]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Continue pattern through 15-25 nodes]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+END NODE A: [DEFINITIVE RECOMMENDATION]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+✓ YOUR DECISION: [Clear recommendation]
+
+Why this is right for your situation:
+→ [Reason based on their path]
+→ [Reason based on their path]
+→ [Reason based on their path]
+
+IMMEDIATE NEXT STEPS:
+1. [Specific action]
+2. [Specific action]
+3. [Specific action]
+4. [Specific action]
+5. [Specific action]
+
+What to avoid:
+→ [Common mistake for this path]
+→ [Common mistake for this path]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+[Create 5-7 different END NODES total, each with unique recommendations and action steps based on the path taken]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📊 EXAMPLE WALKTHROUGHS
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+See how others used this tree:
+
+SCENARIO 1: [Specific situation]
+━━━━━━━━━━━━━━━━━━━━━━━━
+Starting point: [Their situation]
+
+Path taken:
+→ Node 1: Answered [X] → Node 3
+→ Node 3: Answered [Y] → Node 7
+→ Node 7: Answered [Z] → Node 12
+→ Node 12: Answered [A] → END NODE B
+
+Result: [What they decided]
+Outcome: [What happened after 30/60/90 days]
+Time saved: Went from 3 weeks of research to 7 minutes of clarity
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+[Create 5 different example walkthroughs showing different paths through the tree]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🗺️ VISUAL PATH MAP
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Quick reference of the most common paths:
+
+PATH 1: The [Name] Route
+Node 1 → 3 → 7 → 12 → END A
+Most common for: [Situation type]
+Leads to: [Outcome]
+
+PATH 2: The [Name] Route  
+Node 1 → 2 → 5 → 9 → END C
+Most common for: [Situation type]
+Leads to: [Outcome]
+
+PATH 3: The [Name] Route
+Node 1 → 3 → 8 → 14 → END E
+Most common for: [Situation type]
+Leads to: [Outcome]
+
+[Map out 5-7 common paths]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 DECISION CONFIDENCE CHECK
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+After using the tree, verify your confidence:
+
+My recommended path is: ___________________
+
+I'm confident because:
+☐ The logic makes sense for my situation
+☐ The action steps feel doable
+☐ This aligns with my constraints
+☐ The risks are acceptable
+☐ I'm ready to commit
+
+If you checked 4+ boxes: EXECUTE immediately
+If you checked 2-3 boxes: Review nodes [X, Y, Z] again
+If you checked 0-1 boxes: You may have answered dishonestly - start over
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: DECISION VALIDATION CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before executing, confirm:
+
+☐ My decision is based on FACTS not fears
+☐ I have the resources for the recommended path
+☐ The timeline is realistic for my situation
+☐ I'm NOT choosing this because it's easiest
+☐ I'm NOT avoiding this because it's hard
+☐ This moves me toward my goal
+☐ I can start within 48 hours
+
+If ALL checked: GO. If not: Revisit specific nodes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+DECISION TREE DESIGN RULES:
+- Every question is BINARY or 3-choice max
+- Questions must be OBSERVABLE (factual, not opinion)
+- Each path leads to a DIFFERENT recommendation
+- End nodes give 5 SPECIFIC next actions
+- No vague language ("consider", "maybe", "think about")
+- Total nodes: 15-25 (more = analysis paralysis returns)
+
+GOOD NODE: "Do you have more than $5,000 in savings?"
+BAD NODE: "Are you financially stable?"
+
+FORMAT AS CLEAN TEXT with clear node numbers and arrows (→).
+
+This should feel like LOGIC SOLVING THEIR PROBLEM, not advice.`
+            },
+            {
+                id: 6,
+                assetType: "Maps",
+                summary: "Build progress maps with clear milestones that show the shortest route from start to finish without overwhelm.",
+                prompt1Template: `You are an elite progress architect who creates "milestone roadmaps" that sell for $147+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 roadmap ideas that transform OVERWHELM into MOMENTUM through clear milestones.
+
+REQUIREMENTS:
+✓ Each name must be vivid, specific, and instantly communicate the journey
+✓ Each must break intimidating goals into BITE-SIZED milestones
+✓ Each description MUST mention "[keyword]" multiple times
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [Vivid, Specific Name] Map
+The journey: [Mention [keyword] - start point → end point with timeline]
+The milestones: [Mention [keyword] - list the 5-7 key progress markers]
+Why it works: [Mention [keyword] - psychological/momentum benefit]
+
+EXAMPLE for "online course creation":
+
+1)
+Name: The 30-Day Course Sprint Map
+The journey: From zero to first online course module published and validated with real feedback in just 30 days—proving your online course concept works before investing months in full production.
+The milestones: Niche selected (Day 3), First lesson outline (Day 7), Pilot lesson recorded (Day 14), Beta testers recruited (Day 21), Feedback incorporated (Day 28), Module 1 complete (Day 30)—rapid online course prototyping milestones.
+Why it works: Eliminates the online course creation trap of spending 6 months building a course nobody wants—this map gets you real student feedback in 30 days so you know it's worth finishing.
+
+2)
+Name: The Zero-to-Launched Course Map
+The journey: From "I have an idea for an online course" to "I have paying students enrolled in my course" in 75 days flat—going from overwhelmed course creator to launched course business owner.
+The milestones: Validation checkpoint (Day 7), Curriculum completed (Day 14), First module recorded (Day 30), 100 email subscribers (Day 45), Sales page live (Day 60), First 10 students enrolled (Day 75)—each online course creation milestone builds momentum toward launch.
+Why it works: Instead of the typical "someday I'll create an online course" that never happens, this map shows exactly where you should be each week, making online course creation feel like following GPS directions instead of wandering in the dark.
+
+Now generate 7 maps for: [keyword]
+
+Make them feel like GPS NAVIGATION. Make overwhelm IMPOSSIBLE.`,
+                prompt2Template: `You are an elite journey designer who creates $147 "momentum roadmaps" that eliminate overwhelm.
+
+Create a COMPLETE, VISUAL, READY-TO-SELL progress map for:
+
+Map: [chosen_idea]
+Niche: [keyword]
+
+QUALITY STANDARDS:
+- This must be SELLABLE TODAY at $77-$147
+- Visual milestone progression
+- Builds unstoppable momentum
+- Prevents overwhelm completely
+- Feels like GPS for success
+
+AUDIENCE:
+[keyword] practitioners who are PARALYZED by the size of the goal and don't know where to start. They need a step-by-step journey broken into achievable milestones that build confidence and momentum.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Map Name]
+Your [Timeline] Journey from [Start] to [Finish]
+
+Tagline: The Milestone-by-Milestone Path to [keyword] Success
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 YOUR STARTING POINT
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+You're here if you have:
+
+☑ [Characteristic of starting point]
+☑ [Characteristic of starting point]
+☑ [Characteristic of starting point]
+☑ [Characteristic of starting point]
+☑ [Characteristic of starting point]
+
+But you DON'T yet have:
+
+☐ [What they're missing]
+☐ [What they're missing]
+☐ [What they're missing]
+
+Current frustration: [What they're feeling right now about [keyword]]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🏆 YOUR DESTINATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+You've arrived when:
+
+✓ [Specific observable outcome]
+✓ [Specific observable outcome]
+✓ [Specific observable outcome]
+✓ [Specific observable outcome]
+✓ [Specific observable outcome]
+
+What success feels like: [Emotional state at destination]
+
+What success looks like: [Tangible evidence - numbers/metrics]
+
+Timeline: [X] days/weeks from start to finish
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🗺️ THE COMPLETE MAP OVERVIEW
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Your journey has [5-7] major milestones:
+
+START → Milestone 1 → Milestone 2 → Milestone 3 → Milestone 4 → Milestone 5 → FINISH
+
+Each milestone builds on the last. No skipping allowed.
+
+Estimated total time: [X weeks/months]
+Average daily effort: [X minutes/hours]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📍 MILESTONE 1: [NAME]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Timeline: Days/Weeks [X-Y]
+
+GOAL: [What you accomplish in this phase]
+
+ACTIONS (in order):
+1. [Specific action with details]
+2. [Specific action with details]
+3. [Specific action with details]
+4. [Specific action with details]
+5. [Specific action with details]
+6. [Specific action with details]
+7. [Specific action with details]
+
+TIME REQUIRED: [X hours total for this milestone]
+
+"DONE WHEN" CHECKLIST:
+☐ [Observable completion criteria]
+☐ [Observable completion criteria]
+☐ [Observable completion criteria]
+☐ [Observable completion criteria]
+☐ [Observable completion criteria]
+
+COMMON OBSTACLE: [What usually stops people here]
+→ Fix: [How to overcome it]
+
+MOMENTUM BUILDER: [Small win to celebrate]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+[Repeat this format for Milestones 2-7, each building on the previous]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ THE FAST TRACK VERSION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Don't have [full timeline]? Here's the compressed version.
+
+This gets you 70% of results in half the time.
+
+FAST TRACK MILESTONES:
+
+Week 1: [Condensed milestone combining 1-2 originals]
+→ Core actions: [3 critical steps only]
+→ Skip: [What you're sacrificing for speed]
+
+Week 2: [Condensed milestone]
+→ Core actions: [3 critical steps only]
+→ Skip: [What you're sacrificing]
+
+[Continue for compressed timeline]
+
+Trade-off: You move faster but [specific limitation]
+
+Best for: [Who should use fast track]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🛡️ THE SAFETY TRACK VERSION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Need to minimize risk? Here's the cautious path.
+
+This takes longer but reduces failure risk to near-zero.
+
+SAFETY TRACK MODIFICATIONS:
+
+Milestone 1: Add [safety buffer/validation step]
+→ Extra time: [+X days]
+→ Extra security: [What this prevents]
+
+Milestone 2: Add [safety buffer/validation step]
+→ Extra time: [+X days]
+→ Extra security: [What this prevents]
+
+[Continue for each milestone]
+
+Trade-off: You move slower but [specific benefit]
+
+Best for: [Who should use safety track]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📊 PROGRESS TRACKING DASHBOARD
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Track your journey:
+
+MILESTONE 1: ☐ Not Started  ☐ In Progress  ☐ Complete
+Start date: ________  End date: ________
+Key metric: ________________________
+
+MILESTONE 2: ☐ Not Started  ☐ In Progress  ☐ Complete
+Start date: ________  End date: ________
+Key metric: ________________________
+
+[Continue for all milestones]
+
+OVERALL PROGRESS: _____ %
+
+On track for: ________ (target completion date)
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 MILESTONE ACHIEVEMENT CELEBRATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Each milestone deserves recognition:
+
+Milestone 1 complete? Reward: [Specific celebration]
+Milestone 2 complete? Reward: [Specific celebration]
+Milestone 3 complete? Reward: [Specific celebration]
+Milestone 4 complete? Reward: [Specific celebration]
+Milestone 5 complete? Reward: [Specific celebration]
+
+FINAL DESTINATION reached? [Major celebration/next level goal]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 ONE-PAGE MAP SUMMARY
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Quick reference version:
+
+THE JOURNEY: [Start] → [Finish] in [Timeline]
+
+MILESTONE 1: [Name] - [Key action]
+MILESTONE 2: [Name] - [Key action]
+MILESTONE 3: [Name] - [Key action]
+MILESTONE 4: [Name] - [Key action]
+MILESTONE 5: [Name] - [Key action]
+
+CURRENT LOCATION: ___________________
+
+NEXT MILESTONE: ___________________
+
+NEXT ACTION: ___________________
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: MOMENTUM RECOVERY PROTOCOL
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Lost momentum? Get back on track:
+
+IF you're stuck at Milestone [X]:
+→ Review: [Specific checklist items]
+→ Get help: [Resource/support to seek]
+→ Adjust: [How to modify approach]
+
+IF you missed your timeline:
+→ Don't restart - assess where you are
+→ Pick up at current milestone
+→ Adjust timeline, not the map
+
+IF you want to quit:
+→ Review wins so far: [List achievements]
+→ Calculate: Only [X] milestones left
+→ Ask: "What if I finish?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+MAP DESIGN RULES:
+- Milestones are SEQUENTIAL (no skipping)
+- Actions are OBSERVABLE (can verify completion)
+- Timeline is REALISTIC (not aspirational)
+- Each milestone = psychological win
+- Progress is MEASURABLE
+- 5-7 milestones total (more = overwhelming)
+
+FORMAT AS CLEAN TEXT with visual progression markers (→, ☐, ✓).
+
+This should feel like FOLLOWING GPS, not wandering blind.`
+            },
+            {
+                id: 7,
+                assetType: "Shortcuts",
+                summary: "Create ready-made shortcut guides that compress months of trial-and-error into instant implementation strategies.",
+                prompt1Template: `You are an elite efficiency expert who creates "trial-and-error elimination" guides that sell for $197+.
+
+The keyword/niche is: [keyword]
+
+Your task: Generate 7 shortcut guide ideas that compress MONTHS OF LEARNING into INSTANT IMPLEMENTATION.
+
+REQUIREMENTS:
+✓ Each name must be vivid, specific, and instantly communicate the shortcut
+✓ Each must eliminate trial-and-error and provide PROVEN shortcuts
+✓ Each description MUST mention "[keyword]" multiple times
+
+FORMAT (number ideas 1-7 only):
+
+1)
+Name: The [Vivid, Specific Name] Shortcuts
+What it compresses: [Mention [keyword] - time/mistakes it eliminates]
+The shortcuts included: [Mention [keyword] - specific types of hacks/workarounds]
+The advantage: [Mention [keyword] - competitive edge gained]
+
+EXAMPLE for "SEO optimization":
+
+1)
+Name: The 80/20 SEO Cheat Sheet
+What it compresses: Cuts the 200+ SEO optimization factors down to the 15 that actually move the needle, saving you from analysis paralysis and wasted effort on low-impact SEO optimization tactics.
+The shortcuts included: The exact SEO optimization checklist Google's own quality raters use, 5 schema markup shortcuts that take 2 minutes but boost click-through 30%, the "freshness trigger" that can resurrect old content overnight, and 8 technical SEO optimization fixes you can copy-paste today.
+The advantage: You focus only on high-ROI SEO optimization moves instead of the 85% of tactics that waste time, getting better SEO optimization results in less time than people doing "everything."
+
+2)
+Name: The First-Page Ranking Shortcut Playbook
+What it compresses: Eliminates 6-12 months of SEO optimization trial-and-error, failed link-building attempts, and algorithm penalties by giving you only what currently works in SEO optimization.
+The shortcuts included: Done-for-you SEO optimization keyword research templates, plug-and-play title formulas that rank, exact technical settings to copy, link outreach email scripts with 40% response rates, and the 15-minute daily SEO optimization routine that maintains rankings.
+The advantage: You skip the "learning curve tax" that costs most people $5,000+ in failed SEO optimization experiments and start with strategies that are already proven to rank in competitive niches.
+
+Now generate 7 shortcuts for: [keyword]
+
+Make them feel like CHEAT CODES. Make them eliminate YEARS of trial-and-error.`,
+                prompt2Template: `Act as an elite template pack creator.
+
+Create a PDF-ready template pack for:
+Template pack name: [chosen_idea]
+Keyword/topic: [keyword]
+
+Audience:
+[keyword] practitioners who are TIRED OF TRIAL-AND-ERROR and want to skip directly to what works. They need battle-tested shortcuts that eliminate wasted time and costly mistakes.
+
+PDF STRUCTURE:
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📘 TITLE PAGE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Shortcut Guide Name]
+Skip the Learning Curve: [keyword] Shortcuts That Actually Work
+
+Tagline: Compress [X] Months of Trial-and-Error into [Y] Days
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💰 THE COST OF TRIAL-AND-ERROR
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Without shortcuts, most [keyword] beginners waste:
+
+→ [X] months figuring out what works
+→ $[X,XXX] on failed experiments
+→ [X] hours on tactics that don't move the needle
+→ [X] opportunities lost to slow learning
+
+This guide eliminates all of that.
+
+What you're getting: [X] proven shortcuts that compress the learning curve from [timeframe] to [shorter timeframe].
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 SHORTCUT CATEGORIES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+This guide contains [6-8] categories of shortcuts:
+
+1. [Category name] - [Number] shortcuts
+2. [Category name] - [Number] shortcuts  
+3. [Category name] - [Number] shortcuts
+4. [Category name] - [Number] shortcuts
+5. [Category name] - [Number] shortcuts
+6. [Category name] - [Number] shortcuts
+
+Total shortcuts: [40-50]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 1: [NAME] SHORTCUTS
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Brief intro to this category - what these shortcuts eliminate]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+SHORTCUT #1: [Name]
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+What it is: [One sentence description]
+
+The long way (what most people do):
+→ [Step 1 - time consuming]
+→ [Step 2 - expensive]
+→ [Step 3 - risky]
+→ Result: [X hours/days/dollars wasted]
+
+The shortcut:
+→ [Quick method - specific tool/tactic/approach]
+→ Result: Same outcome in [fraction of time/cost]
+
+Example: [Real-world example of this shortcut in action for [keyword]]
+
+Why it works: [The principle/logic behind why this shortcut is effective]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+[Repeat for 5-8 shortcuts in this category]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+CATEGORY 2: [NAME] SHORTCUTS
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+[Continue same pattern for all categories]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🔥 THE "NUCLEAR" SHORTCUTS
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+These 5 shortcuts are so powerful they feel unfair:
+
+NUCLEAR SHORTCUT #1: [Name]
+━━━━━━━━━━━━━━━━━━━━━━━━
+The hack: [Specific unconventional approach]
+Time saved: [X hours/days]
+Money saved: [Dollar amount]
+Risk level: Low / Medium / High
+Best for: [Who should use this]
+Warning: [Any caveats or limitations]
+
+[Repeat for 5 nuclear shortcuts]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🛠️ READY-TO-USE TOOLS & RESOURCES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+The exact tools that make these shortcuts work:
+
+FREE TOOLS:
+→ [Tool name]: Does [function] - saves [time/money]
+→ [Tool name]: Does [function] - saves [time/money]
+→ [Tool name]: Does [function] - saves [time/money]
+→ [Tool name]: Does [function] - saves [time/money]
+→ [Tool name]: Does [function] - saves [time/money]
+
+PAID TOOLS (Worth it):
+→ [Tool name] ($X/month): ROI is [specific benefit]
+→ [Tool name] ($X/month): ROI is [specific benefit]
+→ [Tool name] ($X/month): ROI is [specific benefit]
+
+TEMPLATES & SCRIPTS:
+→ [Resource name]: [What it does]
+→ [Resource name]: [What it does]
+→ [Resource name]: [What it does]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ SHORTCUTS TO AVOID
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+These "shortcuts" will backfire:
+
+❌ AVOID: [Dangerous shortcut]
+Why it fails: [Explanation]
+What happens: [Negative consequence]
+Better alternative: [Legitimate shortcut to use instead]
+
+[List 7-10 shortcuts to avoid]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📅 YOUR 7-DAY SHORTCUT IMPLEMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+How to implement these shortcuts fast:
+
+DAY 1: [Category] Shortcuts
+→ Implement: Shortcuts #[X, Y, Z]
+→ Time required: [X minutes]
+→ Expected result: [Specific outcome]
+
+DAY 2: [Category] Shortcuts
+→ Implement: Shortcuts #[X, Y, Z]
+→ Time required: [X minutes]
+→ Expected result: [Specific outcome]
+
+[Continue through Day 7]
+
+By Day 7: You'll have [specific advantage] over people doing it the long way.
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+💡 SHORTCUT STACKING STRATEGIES
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Combine shortcuts for exponential results:
+
+STACK #1: [Name]
+Combine: Shortcut #[X] + Shortcut #[Y] + Shortcut #[Z]
+Result: [Specific compounded benefit]
+Use case: [When to use this stack]
+
+STACK #2: [Name]
+Combine: [Shortcuts]
+Result: [Benefit]
+Use case: [When to use]
+
+[Create 5 shortcut stacks]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 SHORTCUT QUICK REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Situation-based shortcut finder:
+
+IF you need to [common goal]:
+→ Use: Shortcuts #[X, Y, Z]
+→ Time to result: [Timeline]
+
+IF you need to [common goal]:
+→ Use: Shortcuts #[X, Y, Z]
+→ Time to result: [Timeline]
+
+[Create 10-15 situation-based recommendations]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+📋 SHORTCUT TRACKING SHEET
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+Track shortcuts implemented:
+
+SHORTCUT #: _____ 
+☐ Implemented  
+Result: _____________________________
+Time saved: _________________________
+
+[Repeat for tracking 20+ shortcuts]
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+🎁 BONUS: THE SHORTCUT MINDSET
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+How to find your OWN shortcuts:
+
+Principle 1: [Shortcut-finding strategy]
+Principle 2: [Shortcut-finding strategy]
+Principle 3: [Shortcut-finding strategy]
+Principle 4: [Shortcut-finding strategy]
+Principle 5: [Shortcut-finding strategy]
+
+Questions to ask:
+→ "Who has already solved this?"
+→ "What's the 80/20 here?"
+→ "Which steps can I eliminate completely?"
+→ "What tools automate this?"
+→ "Who can I pay to skip this?"
+
+━━━━━━━━━━━━━━━━━━━━━━━━
+
+SHORTCUT GUIDE RULES:
+- Every shortcut MUST include time/money saved
+- Compare "long way" vs "shortcut" explicitly
+- Specific tools/tactics (not vague advice)
+- Real examples for every shortcut
+- Observable results
+- 40-50 total shortcuts across all categories
+
+FORMAT AS CLEAN TEXT with clear categories and numbered shortcuts.
+
+This should feel like BUYING INSIDER KNOWLEDGE, not reading another guide.`
+            }
+        ];
+
+        // State management
+        let currentKeyword = '';
+
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedKeyword = localStorage.getItem('digitalAssetKeyword');
+            if (savedKeyword) {
+                document.getElementById('keywordInput').value = savedKeyword;
+                currentKeyword = savedKeyword;
+                renderAssets();
+            }
+        });
+
+        // Generate all prompts
+        function generateAllPrompts() {
+            const keyword = document.getElementById('keywordInput').value.trim();
+            
+            if (!keyword) {
+                alert('Please enter a keyword first!');
+                return;
+            }
+
+            currentKeyword = keyword;
+            localStorage.setItem('digitalAssetKeyword', keyword);
+            renderAssets();
+            
+            setTimeout(() => {
+                document.querySelector('.asset-card')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Reset keyword
+        function resetKeyword() {
+            document.getElementById('keywordInput').value = '';
+            currentKeyword = '';
+            localStorage.removeItem('digitalAssetKeyword');
+            document.getElementById('assetsGrid').innerHTML = '';
+            showToast('Cleared!');
+        }
+
+        // Render all asset cards
+        function renderAssets() {
+            const grid = document.getElementById('assetsGrid');
+            grid.innerHTML = assets.map(asset => createAssetCard(asset)).join('');
+        }
+
+        // Create individual asset card HTML
+        function createAssetCard(asset) {
+            const prompt1 = asset.prompt1Template.replace(/\[keyword\]/g, currentKeyword);
+            
+            // Store the full prompt in a data structure instead of HTML attribute
+            if (!window.assetPrompts) window.assetPrompts = {};
+            window.assetPrompts[`prompt1-${asset.id}`] = prompt1;
+            window.assetPrompts[`prompt2-template-${asset.id}`] = asset.prompt2Template;
+            
+            return `
+                <div class="asset-card">
+                    <div class="asset-header">
+                        <div class="asset-label">ASSET ${asset.id}</div>
+                        <h2 class="asset-title">${asset.assetType}</h2>
+                        <p class="asset-summary">${asset.summary}</p>
+                    </div>
+
+                    <!-- Prompt 1: Idea Generator -->
+                    <div class="prompt-section">
+                        <div class="prompt-header">
+                            <span class="prompt-label">Prompt 1: Idea Generator</span>
+                            <div class="prompt-actions">
+                                <button class="expand-btn" onclick="toggleExpand('prompt1-${asset.id}')">
+                                    <span id="expand-text-prompt1-${asset.id}">Expand</span>
+                                </button>
+                                <button class="copy-btn" onclick="copyPrompt('prompt1-${asset.id}')">Copy</button>
+                            </div>
+                        </div>
+                        <div class="prompt-content" id="prompt1-${asset.id}">
+${prompt1}</div>
+                    </div>
+
+                    <!-- Builder Input -->
+                    <div class="builder-section">
+                        <label class="builder-label">Paste your chosen idea:</label>
+                        <input type="text" class="builder-input" id="chosen-idea-${asset.id}" placeholder="e.g., The F.A.S.T. Framework for Email Marketing">
+                        <button class="generate-prompt2-btn" onclick="generatePrompt2(${asset.id})">Generate Prompt 2</button>
+                    </div>
+
+                    <!-- Prompt 2: Builder -->
+                    <div class="prompt-section">
+                        <div class="prompt-header">
+                            <span class="prompt-label">Prompt 2: Builder</span>
+                            <div class="prompt-actions">
+                                <button class="expand-btn" onclick="toggleExpand('prompt2-${asset.id}')">
+                                    <span id="expand-text-prompt2-${asset.id}">Expand</span>
+                                </button>
+                                <button class="copy-btn" onclick="copyPrompt2(${asset.id})">Copy</button>
+                            </div>
+                        </div>
+                        <div class="prompt-content" id="prompt2-${asset.id}">
+${asset.prompt2Template.replace(/\[keyword\]/g, currentKeyword).replace(/\[chosen_idea\]/g, '[chosen_idea]')}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Toggle expand/collapse
+        function toggleExpand(promptId) {
+            const promptElement = document.getElementById(promptId);
+            const expandText = document.getElementById(`expand-text-${promptId}`);
+            
+            if (promptElement.classList.contains('expanded')) {
+                promptElement.classList.remove('expanded');
+                expandText.textContent = 'Expand';
+            } else {
+                promptElement.classList.add('expanded');
+                expandText.textContent = 'Collapse';
+            }
+        }
+
+        // Copy Prompt 1
+        function copyPrompt(promptId) {
+            const text = window.assetPrompts[promptId];
+            
+            if (!text) {
+                alert('Prompt not found. Please regenerate the prompts.');
+                return;
+            }
+            
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('COPIED!');
+            }).catch(err => {
+                alert('Failed to copy. Please try again.');
+            });
+        }
+
+        // Copy Prompt 2 with chosen idea
+        function copyPrompt2(assetId) {
+            const chosenIdeaInput = document.getElementById(`chosen-idea-${assetId}`);
+            const chosenIdea = chosenIdeaInput.value.trim();
+            
+            const template = window.assetPrompts[`prompt2-template-${assetId}`];
+            
+            if (!template) {
+                alert('Prompt template not found. Please regenerate the prompts.');
+                return;
+            }
+            
+            const finalPrompt = template
+                .replace(/\[keyword\]/g, currentKeyword)
+                .replace(/\[chosen_idea\]/g, chosenIdea || '[chosen_idea]');
+            
+            navigator.clipboard.writeText(finalPrompt).then(() => {
+                showToast('COPIED!');
+            }).catch(err => {
+                alert('Failed to copy. Please try again.');
+            });
+        }
+
+        // Generate Prompt 2 with chosen idea
+        function generatePrompt2(assetId) {
+            const chosenIdeaInput = document.getElementById(`chosen-idea-${assetId}`);
+            const chosenIdea = chosenIdeaInput.value.trim();
+            
+            if (!chosenIdea) {
+                alert('Please enter your chosen idea first!');
+                return;
+            }
+            
+            const template = window.assetPrompts[`prompt2-template-${assetId}`];
+            
+            if (!template) {
+                alert('Prompt template not found. Please regenerate the prompts.');
+                return;
+            }
+            
+            const updatedPrompt = template
+                .replace(/\[keyword\]/g, currentKeyword)
+                .replace(/\[chosen_idea\]/g, chosenIdea);
+            
+            const promptElement = document.getElementById(`prompt2-${assetId}`);
+            promptElement.textContent = updatedPrompt;
+            
+            // Store the updated prompt for copying
+            window.assetPrompts[`prompt2-${assetId}`] = updatedPrompt;
+            
+            showToast('Prompt 2 Generated!');
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Escape HTML for attributes
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Allow Enter key to trigger generate
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('keywordInput')?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    generateAllPrompts();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
