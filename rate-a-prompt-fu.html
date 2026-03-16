@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rate A Prompt Follow-up - Audit Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 6px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 25px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      .step-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Rate A Prompt Follow-up</h1>
+      <p class="subtitle">(Step#1 -> Rate A Prompt of a prompt to modify)</p>
+    </header>
+
+    <div class="prompt-workflow">
+      
+      <!-- Prompt 1 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #1: Logic & Difference Analysis</span></div>
+        <div class="prompt-content" id="p1">Task:
+
+Compare the optimized prompt with the original prompt that I provided at the beginning of this chat.
+
+Carefully analyze both prompts and identify all differences between them.
+
+Your goal is to clearly explain what has changed and why those changes improve the prompt.
+
+Structure your answer in the following four sections:
+
+1. ELEMENTS ADDED
+
+List all elements, instructions, constraints, or structural components that appear in the optimized prompt but were not present in the original prompt.
+
+2. ELEMENTS DELETED
+
+List all elements, instructions, phrases, or wording that existed in the original prompt but were removed from the optimized prompt.
+
+3. ELEMENTS MODIFIED OR RESTRUCTURED
+
+Identify parts that still exist but were:
+- Reworded
+- Expanded
+- Condensed
+- Reorganized
+
+Explain exactly how each part was changed.
+
+4. REASON FOR EACH CHANGE
+
+For every addition, deletion, or modification, explain:
+
+- Why the change was made
+- How it improves clarity, precision, or AI understanding
+- How it improves the quality of the output
+- What potential problem or confusion it prevents
+
+Instruction:
+
+Be precise, analytical, and structured in your explanation. Focus on prompt engineering logic rather than giving a general opinion.
+
+The goal of this analysis is to understand how the optimized prompt improves the effectiveness of the original prompt.</div>
+        <button class="copy-btn" onclick="copyPrompt('p1', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 2 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #2: Output Behavior Impact</span></div>
+        <div class="prompt-content" id="p2">Task:
+
+Using the comparison report you generated earlier, analyze how the changes between the original prompt and the optimized prompt will affect the output generated by the AI.
+
+Focus specifically on how additions, deletions, and modifications influence the final response produced by the model.
+
+Structure your answer in the following sections:
+
+1. OUTPUT ELEMENTS THAT WILL NO LONGER APPEAR
+
+Identify elements that are likely to disappear from the output because certain instructions, wording, or constraints were deleted from the original prompt.
+
+Explain:
+- What type of responses the AI might previously have produced
+- Why those responses will now be less likely or impossible
+
+2. NEW OUTPUT ELEMENTS THAT WILL NOW APPEAR
+
+Identify new types of responses, structures, or details that will now appear in the output because of instructions or constraints added in the optimized prompt.
+
+Explain:
+- What the AI is now guided to produce
+- How these additions improve usefulness, clarity, or engagement
+
+3. OUTPUT QUALITY IMPROVEMENTS CAUSED BY MODIFICATIONS
+
+Explain how modified or restructured instructions change the style, clarity, depth, or structure of the generated output.
+
+Focus on improvements such as:
+- Better structure
+- More precise answers
+- Reduced ambiguity
+- More consistent formatting
+
+4. BEFORE VS AFTER OUTPUT BEHAVIOR
+
+Provide a short conceptual comparison describing:
+
+Original Prompt Output Behavior:
+Describe how the AI would likely respond when using the original prompt.
+
+Optimized Prompt Output Behavior:
+Describe how the AI will likely respond when using the optimized prompt.
+
+Instruction:
+
+Base your analysis strictly on prompt design and instruction differences. Focus on explaining how prompt engineering decisions influence AI output behavior.</div>
+        <button class="copy-btn" onclick="copyPrompt('p2', this)">Copy Full Prompt</button>
+      </div>
+
+      <!-- Prompt 3 -->
+      <div class="step-card">
+        <div class="step-header"><span class="step-label">Prompt #3: Structural Forecast</span></div>
+        <div class="prompt-content" id="p3">Task:
+
+Based on the optimized prompt, predict how an AI model will likely structure its response before the prompt is actually executed.
+
+Your objective is to forecast the structure, style, and components of the output that the prompt is designed to generate.
+
+Structure your answer in the following sections:
+
+1. EXPECTED OUTPUT STRUCTURE
+
+Predict the likely structure of the AI response. For example:
+
+- Opening section
+- Main sections or categories
+- Lists, steps, or frameworks
+- Closing section or summary
+
+Describe the logical flow the response will probably follow.
+
+2. EXPECTED CONTENT ELEMENTS
+
+Identify the types of information the AI will likely include, such as:
+
+- Explanations
+- Lists
+- Examples
+- Step-by-step instructions
+- Analysis
+- Recommendations
+
+Explain why the prompt design encourages these elements.
+
+3. EXPECTED TONE AND STYLE
+
+Predict the tone and style of the response, for example:
+
+- Analytical
+- Conversational
+- Instructional
+- Persuasive
+
+Explain which parts of the prompt guide this tone.
+
+4. EXPECTED FORMAT AND PRESENTATION
+
+Predict how the response will be formatted. For example:
+
+- Headings
+- Numbered lists
+- Bullet points
+- Paragraph explanations
+
+Explain which prompt instructions lead to this formatting.
+
+5. POTENTIAL LIMITATIONS OR BIASES
+
+Identify any limitations that might still exist in the output due to the prompt design. For example:
+
+- Missing context
+- Possible generic responses
+- Overly structured or rigid outputs
+
+Explain why these limitations might occur.
+
+Instruction:
+
+Base your predictions strictly on the instructions, structure, and wording of the prompt. The goal is to understand how prompt design influences the shape and quality of the AI response before execution.</div>
+        <button class="copy-btn" onclick="copyPrompt('p3', this)">Copy Full Prompt</button>
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyPrompt(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
