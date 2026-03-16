@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prompt Compiler - Production Ready</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Prompt Compiler</h1>
+      <p class="subtitle">Instruction Hierarchy & Structure Engine</p>
+    </header>
+
+    <main>
+      <!-- Inputs Section -->
+      <div class="input-card">
+        <div class="input-group">
+            <label for="ruleInput">Insert your desired rule / point here</label>
+            <textarea id="ruleInput" placeholder="e.g., Ensure the tone is conversational and specific to Bengali speakers in Kolkata."></textarea>
+        </div>
+        <div class="input-group">
+            <label for="promptInput">Insert prompt here</label>
+            <textarea id="promptInput" placeholder="Paste the raw prompt instructions you want to structure..."></textarea>
+        </div>
+      </div>
+
+      <!-- Output Section -->
+      <div class="output-card">
+        <div class="prompt-label">Compiler Instruction Prompt</div>
+        <div class="prompt-content" id="promptDisplay"></div>
+        <button class="copy-btn" onclick="copyText('promptDisplay', this)">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"></path></svg>
+          <span>Copy Compilation Request</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const ruleInput = document.getElementById('ruleInput');
+    const promptInput = document.getElementById('promptInput');
+    const promptDisplay = document.getElementById('promptDisplay');
+
+    const updatePrompt = () => {
+      const rule = ruleInput.value.trim() || "[Insert your desired rule / point here]";
+      const rawPrompt = promptInput.value.trim() || "[Insert prompt here]";
+
+      const template = `Please read the AI prompt below.
+
+Your task is to compile this prompt into a structured, production-ready prompt while ensuring it strictly adheres to the following rule:
+
+${rule}
+
+While compiling the prompt, follow these requirements:
+
+1. Preserve the original intent, objective, and functional purpose of the prompt.
+2. Preserve all essential instructions from the original prompt.
+3. Integrate the new rule so that it becomes part of the prompt’s internal logic and constraints.
+4. Improve clarity, structure, and instruction hierarchy where necessary.
+5. Remove redundancy, ambiguity, and conflicting instructions if present.
+6. Do not introduce new tasks or goals that were not present in the original prompt.
+
+Compile the prompt into the following structure:
+
+ROLE
+Define the role or expertise the AI should assume.
+
+OBJECTIVE
+Clearly state the main task the AI must accomplish.
+
+CONSTRAINTS
+List all rules, limitations, and requirements the AI must follow, including the newly added rule.
+
+INSTRUCTIONS
+Provide the step-by-step instructions the AI should follow.
+
+OUTPUT FORMAT
+Define exactly how the AI should present its final output.
+
+Return only the compiled prompt.
+
+Prompt to compile:
+${rawPrompt}`;
+
+      promptDisplay.innerText = template;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    ruleInput.addEventListener('input', updatePrompt);
+    promptInput.addEventListener('input', updatePrompt);
+
+    // Initialize
+    updatePrompt();
+  </script>
+</body>
+</html>
