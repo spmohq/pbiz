@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Content-to-Cash Engine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .sub-header {
+      color: var(--accent-primary);
+      font-size: 0.95rem;
+      font-weight: 600;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    .workflow-section {
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .section-title span {
+        background: var(--accent-primary);
+        color: #020617;
+        padding: 2px 10px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+
+    .input-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px 20px 0 0;
+      padding: 30px;
+      backdrop-filter: blur(12px);
+    }
+
+    .output-card {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-top: none;
+      border-radius: 0 0 20px 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 100px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .grid-2 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Mini Content-to-Cash Engine</h1>
+      <p class="sub-header">Step 1: Problem Analyzer (Finds real pain) • Step 2: Comment Replier (Validates pain) • Step 3: Product Generator (Converts pain to solution)</p>
+    </header>
+
+    <main>
+      
+      <!-- STEP 1 -->
+      <div class="workflow-section">
+        <div class="section-title"><span>STEP 1</span> Problem Analyzer</div>
+        <div class="input-card">
+            <label>Insert social media post here</label>
+            <textarea id="input_post_step1" placeholder="Paste the Facebook/Instagram post content here..."></textarea>
+        </div>
+        <div class="output-card">
+            <label>Prompt #1: Problem Analyzer</label>
+            <div class="prompt-content" id="display_p1"></div>
+            <button class="copy-btn" onclick="copyText('display_p1', this)">Copy Prompt #1</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="workflow-section">
+        <div class="section-title"><span>STEP 2</span> Comment Replier</div>
+        <div class="input-card">
+            <div class="input-group">
+                <label>Social Media Post (Carried from Step 1)</label>
+                <textarea id="input_post_step2" placeholder="Post content will appear here..."></textarea>
+            </div>
+            <div class="input-group">
+                <label>Paste the output from the Problem Analyzer</label>
+                <textarea id="input_analyzer_output" placeholder="Paste the 7-10 stuck points generated by AI in Step 1..."></textarea>
+            </div>
+        </div>
+        <div class="output-card">
+            <label>Prompt #2: Comment Replier</label>
+            <div class="prompt-content" id="display_p2"></div>
+            <button class="copy-btn" onclick="copyText('display_p2', this)">Copy Prompt #2</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="workflow-section">
+        <div class="section-title"><span>STEP 3</span> Product Generator</div>
+        <div class="input-card">
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Stuck Point</label>
+                    <textarea id="input_stuck" placeholder="Paste the specific stuck point..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Why it happens</label>
+                    <textarea id="input_why" placeholder="Paste the explanation..."></textarea>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="input-group">
+                    <label>Quick Fix</label>
+                    <textarea id="input_fix" placeholder="Paste the quick fix..."></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Prevention</label>
+                    <textarea id="input_prevention" placeholder="Paste the prevention..."></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="output-card">
+            <label>Prompt #3: Product Generator</label>
+            <div class="prompt-content" id="display_p3"></div>
+            <button class="copy-btn" onclick="copyText('display_p3', this)">Copy Prompt #3</button>
+        </div>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    // Inputs
+    const inputPost1 = document.getElementById('input_post_step1');
+    const inputPost2 = document.getElementById('input_post_step2');
+    const inputAnalyzer = document.getElementById('input_analyzer_output');
+    
+    const inputStuck = document.getElementById('input_stuck');
+    const inputWhy = document.getElementById('input_why');
+    const inputFix = document.getElementById('input_fix');
+    const inputPrev = document.getElementById('input_prevention');
+
+    // Displays
+    const displayP1 = document.getElementById('display_p1');
+    const displayP2 = document.getElementById('display_p2');
+    const displayP3 = document.getElementById('display_p3');
+
+    const updateWorkflow = () => {
+      const postText = inputPost1.value.trim() || "[Insert social media post here]";
+      const analyzerText = inputAnalyzer.value.trim() || "[Paste the output from the Problem Analyzer]";
+      
+      const stuckVal = inputStuck.value.trim() || "[Paste selected stuck point]";
+      const whyVal = inputWhy.value.trim() || "[Paste explanation]";
+      const fixVal = inputFix.value.trim() || "[Paste quick fix]";
+      const prevVal = inputPrev.value.trim() || "[Paste prevention]";
+
+      // Sync Step 1 Post to Step 2
+      inputPost2.value = inputPost1.value;
+
+      // PROMPT 1
+      displayP1.innerText = `ROLE
+
+You are an elite audience analyst who specializes in extracting clear, high-signal problems from social media content.
+Your goal is to identify the most common and recurring stuck points within a specific niche based on real user language and context.
+
+TASK
+
+Read the social media post below.
+
+1. Identify the NICHE (be specific).
+2. Extract 7–10 COMMON STUCK POINTS that represent this audience.
+3. Ensure each stuck point is specific, realistic, and based on the context of the post (not generic assumptions).
+
+SOCIAL MEDIA POST:
+${postText}
+
+OUTPUT STRUCTURE
+
+NICHE: [Clearly define the niche]
+
+STUCK POINT: [Common problem in [Niche]]
+
+├─ Why it happens: [Clear, practical explanation based on behavior, skill gap, or situation]
+├─ Quick fix: [Simple, actionable step (no deep strategy, no multi-step systems)]
+└─ Prevention: [Practical way to avoid this problem long-term]
+
+Repeat for 7–10 stuck points.
+
+TONE & RULES
+
+- Keep each point specific, not generic
+- Avoid vague advice like “stay consistent” or “work hard”
+- Quick fix must be immediately actionable
+- Do NOT turn this into a full system or detailed guide
+- Keep answers concise but meaningful`;
+
+      // PROMPT 2
+      displayP2.innerText = `ROLE
+
+You are an elite social media engagement strategist and comment copywriter who specializes in writing high-converting, human-like comments that attract attention, build authority, and trigger replies.
+
+You do NOT sound like an expert giving lectures. You sound like someone who deeply understands the problem and adds sharp, relatable insight.
+
+TASK
+
+Using the stuck points generated earlier, write ONE highly engaging comment for the ORIGINAL social media post.
+
+Select the most emotionally strong or relatable stuck point and use it to craft the comment.
+
+INPUTS
+
+SOCIAL MEDIA POST:
+${postText}
+
+STUCK POINTS:
+${analyzerText}
+
+COMMENT OBJECTIVE
+
+- Show deep understanding of the problem
+- Make the original poster feel “this person gets it”
+- Add a fresh insight, perspective, or pattern
+- Subtly position authority (without sounding salesy)
+- Encourage curiosity or a reply
+
+COMMENT STYLE
+
+- Conversational and natural (not robotic)
+- 2–5 lines max
+- No emojis unless they fit naturally
+- No long explanations
+- No step-by-step advice
+- No hard selling
+
+OPTIONAL ENDING (choose one if it fits naturally)
+
+- Ask a simple, thought-provoking question  
+- Add a short insight that reframes the problem  
+- Light curiosity hook (e.g., “Most people miss this part…”)
+
+IMPORTANT RULES
+
+- Do NOT repeat the post
+- Do NOT give a full solution
+- Do NOT sound like ChatGPT
+- Avoid generic lines like “Great post” or “So true”
+- Focus on ONE idea only
+
+OUTPUT
+
+COMMENT:
+[Write the final comment only]`;
+
+      // PROMPT 3
+      displayP3.innerText = `ROLE
+
+You are an elite product strategist and digital systems architect who creates premium $497 "done-for-you" PDF systems.
+
+You specialize in transforming a single validated problem and its quick fix into a complete, structured, plug-and-play system that delivers a clear result.
+
+Your output must feel like a paid product, not free content.
+
+TASK
+
+Using the stuck point and its quick fix provided below, create a COMPLETE, PLUG-AND-PLAY, READY-TO-SELL system.
+
+This system must expand the quick fix into a full execution framework with clear steps, tools, and ready-to-use templates.
+
+INPUTS
+
+STUCK POINT:
+${stuckVal}
+
+WHY IT HAPPENS:
+${whyVal}
+
+QUICK FIX:
+${fixVal}
+
+PREVENTION:
+${prevVal}
+
+OUTPUT STRUCTURE
+
+PRODUCT TITLE:
+Create a strong, benefit-driven title.
+
+CORE PROMISE:
+Define the transformation (FROM → TO).
+
+TARGET AUDIENCE:
+Who this is for.
+
+SECTION 1: PROBLEM BREAKDOWN
+
+Explain the stuck point in simple language.
+Clarify why most people fail here.
+
+SECTION 2: THE CORE SYSTEM
+
+Turn the quick fix into a step-by-step execution system.
+
+Step 1:
+Step 2:
+Step 3:
+
+Each step must be clear and actionable.
+
+SECTION 3: TOOLS & SETUP
+
+List tools, platforms, or resources needed.
+Keep it beginner-friendly.
+
+SECTION 4: PLUG-AND-PLAY TEMPLATES
+
+Provide ready-to-use assets such as:
+- Scripts
+- Checklists
+- Frameworks
+
+These must be directly usable without modification.
+
+SECTION 5: QUICK START PLAN
+
+Give a simple 24-hour action plan to get started.
+
+SECTION 6: COMMON MISTAKES
+
+List key mistakes and how to avoid them.
+
+SECTION 7: IMPLEMENTATION ROADMAP
+
+Combine everything into a simple execution flow.
+
+SECTION 8: POSITIONING NOTE
+
+Explain why this system is valuable and worth paying for.
+
+TONE & RULES
+
+- Simple, clear, and actionable
+- Beginner-friendly
+- No fluff
+- No theory-heavy explanations
+- Focus on execution
+- Make it feel like a premium paid PDF product`;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    // Event Listeners
+    [inputPost1, inputAnalyzer, inputStuck, inputWhy, inputFix, inputPrev].forEach(el => {
+        el.addEventListener('input', updateWorkflow);
+    });
+
+    // Initialize
+    updateWorkflow();
+  </script>
+</body>
+</html>
