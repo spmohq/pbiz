@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Content-to-Cash Engine Article Genie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --input-bg: #1e293b;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: linear-gradient(to bottom right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      color: var(--accent-primary);
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .input-card, .output-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      margin-bottom: 30px;
+    }
+
+    .input-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      color: var(--accent-primary);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    textarea {
+      width: 100%;
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 15px;
+      color: white;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
+      min-height: 60px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.1);
+    }
+
+    #mainContent {
+        min-height: 150px;
+    }
+
+    .prompt-label {
+        font-size: 1.1rem;
+        color: white;
+        margin-bottom: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.9rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 10px; }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Content-to-Cash Engine Article Genie</h1>
+      <p class="subtitle">Premium Article Reframing Workflow</p>
+    </header>
+
+    <main>
+      <!-- Inputs -->
+      <div class="input-card">
+        <div class="input-group">
+            <label for="wordCount">Target Word Count</label>
+            <textarea id="wordCount" placeholder="e.g., 1200"></textarea>
+        </div>
+        <div class="input-group">
+            <label for="mainContent">Paste Your Content Here</label>
+            <textarea id="mainContent" placeholder="Paste the insights, research, or rough notes here..."></textarea>
+        </div>
+      </div>
+
+      <!-- Prompt 1 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #1: Structure & Reframing</div>
+        <div class="prompt-content" id="p1Display"></div>
+        <button class="copy-btn" onclick="copyText('p1Display', this)">
+          <span>Copy Reframing Prompt</span>
+        </button>
+      </div>
+
+      <!-- Prompt 2 Output -->
+      <div class="output-card">
+        <div class="prompt-label">Prompt #2: Final Writing Command</div>
+        <div class="prompt-content" id="p2Display"></div>
+        <button class="copy-btn" onclick="copyText('p2Display', this)">
+          <span>Copy Writing Prompt</span>
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const wordCountInput = document.getElementById('wordCount');
+    const contentInput = document.getElementById('mainContent');
+    const p1Display = document.getElementById('p1Display');
+    const p2Display = document.getElementById('p2Display');
+
+    const updatePrompts = () => {
+      const count = wordCountInput.value.trim() || "[wordcount]";
+      const content = contentInput.value.trim() || "[Paste Your Content Here]";
+
+      const p1Template = `Reframing the content provided below, I want to write an article (in [wordcount] words) using the following structure:
+
+Hook
+Problem explanation
+Quick solution overview
+Detailed explanation
+Affiliate tool introduction
+Practical use example
+Call to action
+
+1. It must have a strong headline focused on solving a problem.
+Headline Pattern Template:
+“How to [Desired Result] without [Specific Pain Point]”
+2. Section TITLE REQUIREMENTS
+The section title must:
+• Clearly communicate the central insight of the section
+• Avoid hype, exaggeration, or emotional manipulation
+• Avoid vague or abstract phrasing
+• Avoid clickbait curiosity framing
+• Be intellectually compelling but calm
+Do not use overly clever or metaphor-only titles.
+3, The article should subtly increase curiosity about the structured solution without feeling promotional.
+4. Add a stronger hook in the first 3 lines and optimize this specifically for Medium algorithm engagement.
+5. Recommendation, if any, will be Inserted naturally within the article.
+5. My recommendation link will be Added using a natural anchor text.
+6. one personal insight or example must be Included to build credibility.
+
+Generate Bullet points explaining what each section should contain with example structures.
+
+CONTENT:
+${content}`;
+
+      const p2Template = `Write this article (in ${count} words). Please provide the wordcount at the end of your answer.`;
+
+      p1Display.innerText = p1Template;
+      p2Display.innerText = p2Template;
+    };
+
+    const copyText = (elementId, btn) => {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied!</span>`;
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    };
+
+    wordCountInput.addEventListener('input', updatePrompts);
+    contentInput.addEventListener('input', updatePrompts);
+
+    // Initialize
+    updatePrompts();
+  </script>
+</body>
+</html>
