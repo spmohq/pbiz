@@ -177,7 +177,7 @@
   <div class="container">
     <header>
       <h1>Content-to-Cash Engine Article Genie</h1>
-      <p class="subtitle">Premium Article Reframing Workflow</p>
+      <p class="subtitle">Direct-Response Reframing Workflow</p>
     </header>
 
     <main>
@@ -185,17 +185,17 @@
       <div class="input-card">
         <div class="input-group">
             <label for="wordCount">Target Word Count</label>
-            <textarea id="wordCount" placeholder="e.g., 1200"></textarea>
+            <textarea id="wordCount" placeholder="e.g., 1000"></textarea>
         </div>
         <div class="input-group">
             <label for="mainContent">Paste Your Content Here</label>
-            <textarea id="mainContent" placeholder="Paste the insights, research, or rough notes here..."></textarea>
+            <textarea id="mainContent" placeholder="Paste your rough notes or insights here..."></textarea>
         </div>
       </div>
 
       <!-- Prompt 1 Output -->
       <div class="output-card">
-        <div class="prompt-label">Prompt #1: Structure & Reframing</div>
+        <div class="prompt-label">Prompt #1: Section Breakdown</div>
         <div class="prompt-content" id="p1Display"></div>
         <button class="copy-btn" onclick="copyText('p1Display', this)">
           <span>Copy Reframing Prompt</span>
@@ -204,7 +204,7 @@
 
       <!-- Prompt 2 Output -->
       <div class="output-card">
-        <div class="prompt-label">Prompt #2: Final Writing Command</div>
+        <div class="prompt-label">Prompt #2: Writing Command</div>
         <div class="prompt-content" id="p2Display"></div>
         <button class="copy-btn" onclick="copyText('p2Display', this)">
           <span>Copy Writing Prompt</span>
@@ -227,7 +227,7 @@
       const count = wordCountInput.value.trim() || "[wordcount]";
       const content = contentInput.value.trim() || "[Paste Your Content Here]";
 
-      const p1Template = `Reframing the content provided below, I want to write an article (in [wordcount] words) using the following structure:
+      const p1Template = `Reframing the content provided below, I want to write an article, (in ${count} words), using the following structure:
 
 Hook
 Problem explanation
