@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookmarks Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #ef6c57; 
+            --bg-light: #f4f7f6;
+            --text-dark: #333;
+            --text-muted: #666;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        aside {
+            width: 240px;
+            background: var(--white);
+            border-right: 1px solid var(--border-color);
+            padding: 20px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 10px 25px;
+            display: block;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .sidebar-item:hover {
+            background: #fff5f3;
+            color: var(--primary-color);
+        }
+
+        .sidebar-item.active {
+            color: var(--primary-color);
+            font-weight: 600;
+            border-left: 4px solid var(--primary-color);
+            background: #fff5f3;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            background: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .bookmark-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 8px;
+            border-top: 3px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            padding: 15px;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 8px;
+        }
+
+        .category-header h3 {
+            font-size: 16px;
+            color: #444;
+        }
+
+        .bookmark-list {
+            list-style: none;
+        }
+
+        .bookmark-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            text-decoration: none;
+            color: #444;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .bookmark-item:hover {
+            color: var(--primary-color);
+        }
+
+        .icon-circle {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 10px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .new-btn {
+            margin-top: 15px;
+            width: 100%;
+            border: 1px dashed var(--primary-color);
+            background: #fffafa;
+            color: var(--primary-color);
+            padding: 8px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            aside {
+                width: 100%;
+                display: flex;
+                overflow-x: auto;
+                padding: 10px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                white-space: nowrap;
+            }
+            .sidebar-item { padding: 8px 15px; border-left: none !important; }
+            .nav-links { display: none; }
+            .bookmark-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-heart"></i> Bookmarks
+        </div>
+        <div class="nav-links">
+            <a href="https://spmukherjee.co.in/" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-user"></i> Siva</a>
+            <a href="https://example.com/members" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-crown"></i> Memberships</a>
+            <a href="https://example.com/help" target="_blank" rel="noopener noreferrer"><i class="fa-regular fa-circle-question"></i> Support</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside>
+
+            <a href="https://parashuno.github.io/app/bookmark-link-genie.html" target="_blank" rel="noopener noreferrer" class="sidebar-item">Bookmark Link Genie</a>
+            <a href="https://parashuno.github.io/app/url-genie.html" target="_blank" rel="noopener noreferrer" class="sidebar-item">PGP Link Genie</a>
+            <li><a href="https://parashuno.github.io/app/bookmark-category-genie.html" target="_blank" rel="noopener noreferrer" class="sidebar-item">Bookmark Category Genie</a></li>
+
+        </aside>
+
+        <main>
+            <div class="toolbar">
+                <h2>Edu Media Production System</h2>
+            </div>
+
+            <div class="bookmark-grid">
+                <!-- Market Ready -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3><i class="fa-solid fa-chevron-down"></i> Market Ready</h3>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <ul class="bookmark-list">
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">C</span> ChatGPT - ICA Chemist</a></li>
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">C</span> ChatGPT - 4A Content Generator</a></li>
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">F</span> Follow-ups for 4A</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- Tips posts -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3><i class="fa-solid fa-chevron-down"></i> Tips posts</h3>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <ul class="bookmark-list">
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">T</span> Tips Post Genie</a></li>
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">T</span> Tips Post Genie Follow-up</a></li>
+                    </ul>
+
+                </div>
+
+                <!-- Insider Leak -->
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3><i class="fa-solid fa-chevron-down"></i> Insider Leak Posts</h3>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <ul class="bookmark-list">
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">1</span> Insider Leak Post Genie</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="category-card">
+                    <div class="category-header">
+                        <h3><i class="fa-solid fa-chevron-down"></i> Tips posts</h3>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+                    <ul class="bookmark-list">
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">T</span> Tips Post Genie</a></li>
+                        <li><a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" class="bookmark-item"><span class="icon-circle">T</span> Tips Post Genie Follow-up</a></li>
+                    </ul>
+
+                </div>
+
+
+
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>
