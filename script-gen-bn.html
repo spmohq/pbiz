@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bengali AI-Avatar Podcast Script Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+      --input-bg: rgba(15, 23, 42, 0.6);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .sub-header {
+      color: var(--accent-primary);
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      letter-spacing: 0.08em;
+    }
+
+    textarea {
+      background: var(--input-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 15px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      resize: vertical;
+      min-height: 150px;
+      transition: all 0.3s;
+      outline: none;
+    }
+
+    textarea:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.1);
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.85rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 4px 14px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 20px;
+      line-height: 1.5;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      width: 100%;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+    }
+
+    @media (max-width: 850px) {
+      h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Bengali AI-Avatar Podcast Script Generator</h1>
+      <p class="sub-header">AI Content Transformation Engine</p>
+    </header>
+
+    <div class="input-grid">
+      <div class="input-group">
+        <label>Paste Source Text Here</label>
+        <textarea id="val1" oninput="updatePrompts()" placeholder="Enter the source text you want to transform..."></textarea>
+      </div>
+    </div>
+
+    <div class="prompt-workflow">
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-label">Podcast Script Generation Prompt</span>
+        </div>
+        <div class="prompt-content" id="p1_out"></div>
+        <button class="copy-btn" onclick="copyText('p1_out', this)">
+          <span>Copy Prompt</span>
+        </button>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function updatePrompts() {
+      const sourceText = document.getElementById('val1').value || "[PASTE SOURCE TEXT HERE]";
+
+      const prompt = `Act as an elite Bengali podcast writer, narrative strategist, intellectual communicator, long-form content editor, educator, and audience engagement expert.
+
+Your task is to transform the provided source material into a compelling solo podcast video script presented by an AI avatar for a Bengali-speaking audience.
+
+HOST IDENTITY
+
+The podcast host is an AI avatar representing Siva Prasad Mukherjee.
+
+The script MUST begin with the following introduction exactly as written:
+
+"নমস্কার। অনুষ্ঠানে আপনাকে স্বাগত। আমি শিবা প্রসাদ মুখার্জীর AI Avatar। আমি আপনাদের সামনে তুলে ধরি শিবার ভাবনা, পর্যবেক্ষণ, বিশ্লেষণ এবং বিভিন্ন গুরুত্বপূর্ণ বিষয় নিয়ে তাঁর প্রতিফলন। আমি একজন AI-নির্মিত উপস্থাপক হলেও, এখানে প্রকাশিত ধারণা ও দৃষ্টিভঙ্গিগুলি তাঁরই।"
+
+SOURCE MATERIAL
+
+==================================================
+${sourceText}
+==================================================
+
+OBJECTIVE
+
+Transform the source material into a natural, engaging, intellectually stimulating Bengali solo podcast episode.
+
+The podcast should sound as if the AI avatar is speaking directly to the audience while presenting Siva Prasad Mukherjee's observations, reflections, reasoning, questions, insights, and conclusions.
+
+LANGUAGE & AUDIENCE REQUIREMENTS
+
+- Write the entire script in natural Bengali (India).
+- Use spoken Bengali suitable for narration.
+- Write as if speaking directly to an intelligent Bengali audience.
+- Avoid academic jargon, overly formal language, and unnatural translations.
+- Use clear, elegant, listener-friendly Bengali.
+- Prioritize understanding, reflection, and intellectual engagement over entertainment alone.
+
+WRITING REQUIREMENTS
+
+- Write entirely in spoken-language format.
+- Do not write like an article, essay, report, blog post, textbook, or academic paper.
+- Make the script sound natural when read aloud.
+- Maintain a conversational yet intellectually thoughtful tone.
+- Preserve the original meaning, reasoning, observations, and insights from the source material.
+- Expand, connect, clarify, and organize ideas where necessary.
+- Remove repetition, fluff, and unnecessary complexity.
+- Use smooth transitions between ideas.
+- Build curiosity and maintain audience attention.
+- Explain concepts clearly without oversimplifying them.
+- Encourage listeners to think rather than merely consume information.
+
+STRUCTURE
+
+OPENING
+
+- Begin with the required host introduction exactly as provided.
+- Immediately follow with a compelling hook.
+- Introduce the central idea, question, observation, or problem in a way that sparks curiosity.
+
+MAIN DISCUSSION
+
+- Present the key observations, ideas, arguments, lessons, and insights.
+- Develop the reasoning step by step.
+- Explain cause-and-effect relationships where relevant.
+- Reveal deeper patterns, principles, and implications.
+- Use examples, analogies, comparisons, stories, or thought experiments when helpful.
+- Create a sense of intellectual discovery.
+
+REFLECTION
+
+- Summarize the most important observations and implications.
+- Highlight the deeper meaning behind the topic.
+- Explain why the ideas matter beyond the immediate subject.
+
+CLOSING
+
+- End with a thoughtful concluding reflection.
+- Leave the audience with a meaningful question, insight, perspective, or idea to contemplate.
+
+IMPORTANT CONSTRAINTS
+
+- Do NOT include section headings.
+- Do NOT include stage directions.
+- Do NOT include camera instructions.
+- Do NOT include visual descriptions.
+- Do NOT include editing notes.
+- Do NOT include production notes.
+- Do NOT include music cues.
+- Do NOT mention the prompt, source material, or writing process.
+- Do NOT break character.
+- The AI avatar must remain the sole speaker throughout the script.
+- Do not use bullet points.
+- Do not use numbered lists.
+
+OUTPUT REQUIREMENT
+
+Output only the final podcast script in Bengali, ready for narration by the AI avatar.`;
+
+      document.getElementById('p1_out').innerText = prompt;
+    }
+
+    function copyText(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied to Clipboard!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Initial setup
+    updatePrompts();
+  </script>
+</body>
+</html>
