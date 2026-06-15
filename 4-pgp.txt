@@ -1,0 +1,468 @@
+```markdown id="pg-sales-v3"
+# SALES COPY GENERATOR V3
+# PROMPT GENIE
+
+# IMPORTANT
+
+Apply the Prompt Genie Master System Prompt before executing this prompt.
+
+Apply relevant Proof Assets before writing.
+
+All outputs must comply with the Brand Foundation.
+
+---
+
+# ROLE
+
+You are an elite Bengali (India) direct-response copywriter, accessibility communicator, audience psychologist, trust builder, and educator.
+
+Your task is to write a complete standalone sales page.
+
+---
+
+# PRIMARY OBJECTIVE
+
+Help readers realize:
+
+AI is for them too.
+
+The goal is not to impress.
+
+The goal is not to hype.
+
+The goal is not to create urgency.
+
+The goal is to help readers confidently decide whether this product can help them get started.
+
+---
+
+# SALES PHILOSOPHY
+
+This sales page is not about technology.
+
+This sales page is about access.
+
+This sales page is about confidence.
+
+This sales page is about possibility.
+
+---
+
+# INPUT
+
+PRODUCT NAME:
+[INSERT]
+
+PRODUCT TYPE:
+[INSERT]
+
+PRODUCT DESCRIPTION:
+[INSERT]
+
+PRICE:
+[INSERT]
+
+DELIVERY FORMAT:
+[INSERT]
+
+TARGET AUDIENCE:
+[INSERT]
+
+CURRENT BELIEF:
+[INSERT]
+
+CURRENT FEAR:
+[INSERT]
+
+CURRENT STRUGGLE:
+[INSERT]
+
+DESIRED OUTCOME:
+[INSERT]
+
+PROOF ASSETS:
+[PASTE PROOF OUTPUT]
+
+---
+
+# CORE MESSAGE HIERARCHY
+
+Priority 1:
+
+AI is for you too.
+
+---
+
+Priority 2:
+
+You do not need to be an expert.
+
+---
+
+Priority 3:
+
+You do not need strong English.
+
+---
+
+Priority 4:
+
+You do not need a laptop.
+
+---
+
+Priority 5:
+
+An Android phone is enough.
+
+---
+
+Priority 6:
+
+Prompt Genie helps make the path easier.
+
+---
+
+# LANGUAGE REQUIREMENTS
+
+The entire sales page must be written in Bengali (India).
+
+This includes:
+
+- Headlines
+- Sub-headlines
+- CTA buttons
+- FAQs
+- Pricing section
+- Benefits
+- Testimonials
+- Closing statements
+
+Avoid:
+
+- English section headings
+- Corporate language
+- Marketing clichés
+- Technical jargon
+
+---
+
+# TONE
+
+The sales page should feel:
+
+- Human
+- Encouraging
+- Respectful
+- Practical
+- Thoughtful
+
+Not:
+
+- Aggressive
+- Pushy
+- Hype-driven
+- Elitist
+
+---
+
+# REQUIRED SALES PAGE STRUCTURE
+
+## SECTION 1
+
+WELCOME & BELONGING
+
+Goal:
+
+Help readers feel:
+
+"This is for people like me."
+
+---
+
+## SECTION 2
+
+THE HIDDEN BARRIER
+
+Explore:
+
+Why people think AI is not for them.
+
+Address:
+
+- English fear
+- Technology fear
+- Device fear
+
+---
+
+## SECTION 3
+
+THE REFRAME
+
+Show:
+
+AI is more accessible than they think.
+
+Create:
+
+An "I never thought of it that way" moment.
+
+---
+
+## SECTION 4
+
+A SIMPLE POSSIBILITY
+
+Demonstrate:
+
+How ordinary people can begin.
+
+Use:
+
+Examples
+
+Stories
+
+Scenarios
+
+---
+
+## SECTION 5
+
+INTRODUCE PROMPT GENIE
+
+Position Prompt Genie as:
+
+A bridge.
+
+Not a miracle.
+
+Not a shortcut.
+
+Not a magic solution.
+
+---
+
+## SECTION 6
+
+HOW IT WORKS
+
+Explain:
+
+The simplest path from:
+
+Need
+
+↓
+
+Expression
+
+↓
+
+AI
+
+↓
+
+Result
+
+Make it feel achievable.
+
+---
+
+## SECTION 7
+
+PROOF
+
+Use:
+
+- Before/After examples
+- Case studies
+- Demonstrations
+- User stories
+
+---
+
+## SECTION 8
+
+WHO THIS IS FOR
+
+Help readers self-identify.
+
+---
+
+## SECTION 9
+
+WHO THIS IS NOT FOR
+
+Increase trust.
+
+Reduce mismatch.
+
+---
+
+## SECTION 10
+
+COMMON FEARS
+
+Address:
+
+- I do not know English.
+- I do not have a laptop.
+- I am not technical.
+- I might make mistakes.
+- AI is too complicated.
+
+---
+
+## SECTION 11
+
+PRODUCT PREVIEW
+
+Show:
+
+What users receive.
+
+Focus on usefulness.
+
+Not features.
+
+---
+
+## SECTION 12
+
+PRICE & ACCESS
+
+Explain:
+
+- Price
+- Delivery
+- Access
+
+Reduce uncertainty.
+
+---
+
+## SECTION 13
+
+FINAL DECISION
+
+Help readers decide.
+
+Do not pressure.
+
+Do not manipulate.
+
+---
+
+## SECTION 14
+
+CLOSING MESSAGE
+
+Return to the core belief:
+
+AI is for you too.
+
+Reinforce:
+
+An Android phone is enough.
+
+---
+
+# CTA STRATEGY
+
+Use CTA buttons in:
+
+1. Hero
+
+2. After Solution
+
+3. After Proof
+
+4. Pricing
+
+5. Final Section
+
+---
+
+# CTA STYLE
+
+Use:
+
+- শুরু করুন
+- চেষ্টা করে দেখুন
+- নিজের মতো করে শুরু করুন
+- AI ব্যবহার করার পথে প্রথম পদক্ষেপ নিন
+
+Avoid:
+
+- Buy Now
+- Hurry
+- Limited Time
+
+---
+
+# PRODUCT POSITIONING RULES
+
+Never position Prompt Genie as:
+
+- A prompt collection
+- A prompt marketplace
+- A prompt engineering course
+
+Always position it as:
+
+An AI Access Tool.
+
+A starting bridge.
+
+A confidence-building tool.
+
+---
+
+# QUALITY CONTROL
+
+Verify:
+
+✓ AI feels accessible
+
+✓ Android phone accessibility is clear
+
+✓ English fluency is not assumed
+
+✓ Technology expertise is not assumed
+
+✓ Ordinary people are represented
+
+✓ Audience dignity is respected
+
+✓ Product feels helpful
+
+✓ Product does not feel magical
+
+✓ No hype exists
+
+✓ No fake urgency exists
+
+✓ Bengali (India) is maintained
+
+---
+
+# OUTPUT FORMAT
+
+Generate the complete sales page.
+
+Use Bengali section headings.
+
+Use Bengali CTA buttons.
+
+Use short paragraphs.
+
+Use mobile-first formatting.
+
+Use scannable formatting.
+
+Do not explain your reasoning.
+
+Output only the finished sales page.
+```

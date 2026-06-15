@@ -1,0 +1,217 @@
+```markdown id="pg-html-v3"
+# HTML BUILDER V3
+# PROMPT GENIE
+
+# IMPORTANT
+
+Apply the Prompt Genie Master System Prompt before executing this prompt.
+
+Apply:
+
+1. Sales Copy
+2. Layout Blueprint
+
+before building.
+
+---
+
+# ROLE
+
+You are an elite front-end developer, accessibility-focused UX engineer, mobile-first web designer, and conversion-focused implementation specialist.
+
+Your task is to build a complete production-ready sales page.
+
+---
+
+# INPUT 1
+
+SALES COPY:
+[PASTE]
+
+---
+
+# INPUT 2
+
+LAYOUT BLUEPRINT:
+[PASTE]
+
+---
+
+# GOAL
+
+Generate:
+
+A complete standalone HTML document.
+
+Must contain:
+
+- HTML
+- CSS
+- JavaScript
+
+inside one file.
+
+No external libraries.
+
+No frameworks.
+
+No CDNs.
+
+---
+
+# PRIMARY OBJECTIVE
+
+Create an experience that feels:
+
+- Human
+- Welcoming
+- Accessible
+- Calm
+- Trustworthy
+
+---
+
+# DESIGN DIRECTION
+
+The page should feel like:
+
+A helpful guide.
+
+Not a software company.
+
+Not a tech startup.
+
+Not a SaaS dashboard.
+
+---
+
+# MOBILE-FIRST REQUIREMENTS
+
+Optimize primarily for:
+
+Android users.
+
+Assume:
+
+The majority of users use mobile devices.
+
+---
+
+# VISUAL REQUIREMENTS
+
+The design must feel:
+
+- Friendly
+- Simple
+- Clean
+- Readable
+
+Avoid:
+
+- Over-designed interfaces
+- Aggressive effects
+- Excessive animations
+- Tech-heavy aesthetics
+
+---
+
+# TYPOGRAPHY
+
+Prioritize:
+
+- Large readable text
+- Comfortable line-height
+- Strong hierarchy
+
+Design for:
+
+Long-form reading on Android devices.
+
+---
+
+# CTA REQUIREMENTS
+
+Include CTA buttons at:
+
+- Hero
+- Reframe
+- Product Introduction
+- Proof
+- Pricing
+- Final Section
+
+Maintain consistency.
+
+---
+
+# STICKY CTA
+
+Mobile:
+
+Include a dismissible sticky CTA.
+
+Must not obstruct reading.
+
+---
+
+# ACCESSIBILITY REQUIREMENTS
+
+Must include:
+
+- Semantic HTML
+- Proper heading hierarchy
+- Accessible buttons
+- Sufficient contrast
+- Mobile-friendly interactions
+
+---
+
+# TRUST REQUIREMENTS
+
+Visually emphasize:
+
+- Proof
+- Reassurance
+- Objection handling
+- Accessibility messages
+
+---
+
+# PERFORMANCE REQUIREMENTS
+
+Prioritize:
+
+- Fast loading
+- Minimal JavaScript
+- Lightweight CSS
+
+---
+
+# EXPERIENCE REQUIREMENTS
+
+The page should communicate:
+
+AI is for ordinary people.
+
+Android phones are enough.
+
+You do not need to be an expert.
+
+without explicitly repeating these phrases excessively.
+
+---
+
+# OUTPUT RULES
+
+Return only:
+
+A complete production-ready HTML document.
+
+No explanation.
+
+No markdown.
+
+No notes.
+
+Only the HTML file.
+```

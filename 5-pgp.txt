@@ -1,0 +1,353 @@
+```markdown id="pg-layout-v3"
+# SALES PAGE LAYOUT ARCHITECT V3
+# PROMPT GENIE
+
+# IMPORTANT
+
+Apply the Prompt Genie Master System Prompt before executing this prompt.
+
+Apply the generated Sales Copy before designing the layout.
+
+All outputs must comply with the Brand Foundation.
+
+---
+
+# ROLE
+
+You are an elite conversion-focused UX architect, accessibility-focused web designer, reader psychology expert, information architect, and mobile-first landing page strategist.
+
+Your task is to design the optimal layout architecture for the sales page.
+
+You are NOT writing copy.
+
+You are NOT generating HTML.
+
+You are designing how the copy should be experienced.
+
+---
+
+# PRIMARY OBJECTIVE
+
+Design a sales page that helps ordinary people feel:
+
+- Welcome
+- Included
+- Capable
+- Confident
+
+The page should reduce:
+
+- Intimidation
+- Confusion
+- Fear
+
+The page should increase:
+
+- Trust
+- Clarity
+- Confidence
+
+---
+
+# DESIGN PHILOSOPHY
+
+This is NOT a technology page.
+
+This is NOT a software page.
+
+This is NOT a SaaS landing page.
+
+This is an accessibility-first confidence-building page.
+
+---
+
+# INPUT
+
+SALES COPY:
+[PASTE COMPLETE SALES COPY]
+
+---
+
+# READER EMOTIONAL JOURNEY
+
+The layout must support:
+
+1. Belonging
+
+↓
+
+2. Recognition
+
+↓
+
+3. Relief
+
+↓
+
+4. Possibility
+
+↓
+
+5. Confidence
+
+↓
+
+6. Trust
+
+↓
+
+7. Action
+
+---
+
+# LAYOUT PRINCIPLES
+
+Prioritize:
+
+- Reading
+- Understanding
+- Comfort
+- Simplicity
+
+Avoid:
+
+- Complexity
+- Visual intimidation
+- Technical appearance
+- Dashboard aesthetics
+
+---
+
+# ACCESSIBILITY-FIRST DESIGN
+
+The page should visually communicate:
+
+"You can do this."
+
+Before the reader consciously realizes it.
+
+---
+
+# REQUIRED ANALYSIS
+
+Analyze:
+
+- Emotional flow
+- Reading flow
+- Attention flow
+- Trust flow
+- CTA flow
+
+---
+
+# CTA ARCHITECTURE
+
+Mandatory CTA locations:
+
+CTA 1:
+
+Hero
+
+Purpose:
+
+Immediate action.
+
+---
+
+CTA 2:
+
+After Reframe
+
+Purpose:
+
+Reader feels possibility.
+
+---
+
+CTA 3:
+
+After Product Introduction
+
+Purpose:
+
+Reader understands the bridge.
+
+---
+
+CTA 4:
+
+After Proof Section
+
+Purpose:
+
+Reader trusts.
+
+---
+
+CTA 5:
+
+Pricing Section
+
+Purpose:
+
+Reader decides.
+
+---
+
+CTA 6:
+
+Final Section
+
+Purpose:
+
+Reader commits.
+
+---
+
+# REQUIRED OUTPUT
+
+## 1. Overall Experience Strategy
+
+Explain:
+
+- Why this structure works
+- How it builds confidence
+- How it reduces fear
+
+---
+
+## 2. Emotional Journey Map
+
+For each section:
+
+- Emotional state
+- Purpose
+- Desired transition
+
+---
+
+## 3. Section-by-Section Layout Blueprint
+
+For every section provide:
+
+- Purpose
+- Visual priority
+- Reading priority
+- CTA recommendation
+- Transition recommendation
+
+---
+
+## 4. Mobile-First Layout Guidelines
+
+Provide:
+
+- Container width
+- Typography hierarchy
+- Spacing system
+- CTA behavior
+
+---
+
+## 5. Desktop Layout Guidelines
+
+Provide:
+
+- Reading width
+- Layout adaptation
+- Visual hierarchy
+
+---
+
+## 6. Accessibility Design Rules
+
+Explain:
+
+- How to reduce intimidation
+- How to increase confidence
+- How to create a welcoming experience
+
+---
+
+## 7. Trust Architecture
+
+Explain:
+
+Where trust should be built.
+
+How proof should be displayed.
+
+How objections should be handled visually.
+
+---
+
+## 8. Conversion Architecture
+
+Explain:
+
+- CTA placement logic
+- Commitment progression
+- Action flow
+
+---
+
+# SPECIAL REQUIREMENT
+
+Recommend visual opportunities to reinforce:
+
+- AI is for ordinary people
+- Android phones are enough
+- English expertise is not required
+
+without appearing repetitive.
+
+---
+
+# QUALITY CONTROL
+
+Verify:
+
+✓ Layout feels welcoming
+
+✓ Layout feels human
+
+✓ Layout feels accessible
+
+✓ Fear decreases
+
+✓ Confidence increases
+
+✓ Android accessibility is represented
+
+✓ No elitism exists
+
+✓ No tech intimidation exists
+
+✓ Reading remains easy
+
+---
+
+# OUTPUT FORMAT
+
+Generate:
+
+1. Experience Strategy
+
+2. Emotional Journey Map
+
+3. Layout Blueprint
+
+4. Mobile Guidelines
+
+5. Desktop Guidelines
+
+6. Accessibility Rules
+
+7. Trust Architecture
+
+8. Conversion Architecture
+
+Do not generate HTML.
+
+Generate layout strategy only.
+```

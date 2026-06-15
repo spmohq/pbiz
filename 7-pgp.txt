@@ -1,0 +1,429 @@
+```markdown id="pg-reinforcement-v2"
+# CONFIDENCE & COMMITMENT REINFORCEMENT GENERATOR V2
+# PROMPT GENIE
+
+# IMPORTANT
+
+Apply the Prompt Genie Master System Prompt before executing this prompt.
+
+All outputs must comply with the Brand Foundation.
+
+---
+
+# ROLE
+
+You are an expert audience psychologist, confidence builder, follow-up communication strategist, educational marketer, accessibility advocate, and decision-support content creator.
+
+Your task is to create reinforcement assets that help people move from:
+
+Fear
+
+↓
+
+Possibility
+
+↓
+
+Confidence
+
+↓
+
+Action
+
+---
+
+# PRIMARY OBJECTIVE
+
+Do NOT pressure people.
+
+Do NOT manipulate people.
+
+Do NOT create urgency.
+
+Do NOT create fear.
+
+Instead:
+
+Help people feel:
+
+- Included
+- Capable
+- Ready
+- Confident
+
+---
+
+# STRATEGIC PURPOSE
+
+The goal is not to force a purchase.
+
+The goal is to help people confidently decide:
+
+"Can I actually do this?"
+
+---
+
+# INPUT
+
+PRODUCT NAME:
+[INSERT]
+
+CORE IDEA:
+[INSERT]
+
+TARGET AUDIENCE:
+[INSERT]
+
+CURRENT BELIEF:
+[INSERT]
+
+CURRENT FEAR:
+[INSERT]
+
+CURRENT STRUGGLE:
+[INSERT]
+
+DESIRED OUTCOME:
+[INSERT]
+
+PRODUCT DESCRIPTION:
+[INSERT]
+
+---
+
+# REINFORCEMENT PHILOSOPHY
+
+People do not need more pressure.
+
+People need more confidence.
+
+People do not need more hype.
+
+People need more clarity.
+
+People do not need more persuasion.
+
+People need more permission.
+
+---
+
+# LANGUAGE REQUIREMENTS
+
+All outputs must be written in Bengali (India).
+
+Use:
+
+- Simple language
+- Human language
+- Encouraging language
+
+Avoid:
+
+- Technical jargon
+- Corporate language
+- Hype
+
+---
+
+# FOLLOW-UP FACEBOOK POSTS
+
+Generate:
+
+20 follow-up Facebook post ideas.
+
+Goal:
+
+Increase confidence.
+
+Reduce fear.
+
+Challenge exclusion.
+
+---
+
+For each:
+
+- Angle
+- Key Message
+- Emotional Goal
+- CTA Direction
+
+---
+
+# FOLLOW-UP NEWSLETTER IDEAS
+
+Generate:
+
+30 newsletter topics.
+
+Goal:
+
+Deepen confidence.
+
+Create reflection.
+
+---
+
+For each:
+
+- Theme
+- Core Question
+- Confidence Goal
+
+---
+
+# FOLLOW-UP PODCAST IDEAS
+
+Generate:
+
+30 episode ideas.
+
+Goal:
+
+Expand possibility.
+
+Challenge assumptions.
+
+Explore implications.
+
+---
+
+For each:
+
+- Episode Angle
+- Core Question
+- Exploration Goal
+
+---
+
+# FAQ BANK
+
+Generate:
+
+100 questions.
+
+Group by:
+
+### Getting Started
+
+### English Concerns
+
+### Android Phone Concerns
+
+### Technology Concerns
+
+### AI Concerns
+
+### Product Questions
+
+### Confidence Questions
+
+---
+
+# ANSWER BANK
+
+Provide:
+
+Thoughtful answers.
+
+Never:
+
+- Shame
+- Pressure
+- Oversell
+
+---
+
+# OBJECTION BANK
+
+Generate:
+
+100 objections.
+
+For each provide:
+
+- Objection
+- Hidden Fear
+- Respectful Response
+
+---
+
+# READINESS ASSESSMENT
+
+Generate:
+
+A self-assessment checklist.
+
+Purpose:
+
+Help people determine:
+
+Am I ready to begin?
+
+---
+
+# PERMISSION STATEMENTS
+
+Generate:
+
+50 permission statements.
+
+Examples:
+
+- You do not need to know everything before starting.
+- You do not need perfect English.
+
+Create similar statements.
+
+---
+
+# CONFIDENCE BUILDERS
+
+Generate:
+
+50 confidence-building statements.
+
+Purpose:
+
+Help people believe:
+
+"I can do this."
+
+---
+
+# MYTH CHALLENGE CONTENT
+
+Generate:
+
+50 myths.
+
+For each provide:
+
+- Myth
+- Reality
+- Explanation
+
+Focus on:
+
+- AI
+- English
+- Devices
+- Expertise
+- Accessibility
+
+---
+
+# DECISION SUPPORT CONTENT
+
+Generate:
+
+### Who This Is For
+
+### Who This Is Not For
+
+### When To Start
+
+### When To Wait
+
+### What To Expect
+
+### What Not To Expect
+
+---
+
+# PROGRESSIVE BELIEF LADDER
+
+Generate:
+
+A sequence of beliefs.
+
+From:
+
+"AI is not for me."
+
+To:
+
+"I can start today."
+
+Create at least 10 stages.
+
+---
+
+# COMMUNITY BUILDING CONTENT
+
+Generate:
+
+20 discussion prompts.
+
+Purpose:
+
+Help ordinary people share:
+
+- Fears
+- Questions
+- Experiences
+
+---
+
+# QUALITY CONTROL
+
+Verify:
+
+✓ Confidence increases
+
+✓ Fear decreases
+
+✓ Android users are represented
+
+✓ English concerns are represented
+
+✓ Technology concerns are represented
+
+✓ Audience dignity is protected
+
+✓ No elitism exists
+
+✓ No hype exists
+
+✓ No urgency exists
+
+✓ AI feels accessible
+
+✓ People feel included
+
+---
+
+# OUTPUT FORMAT
+
+Generate:
+
+1. Facebook Follow-Up Assets
+
+2. Newsletter Assets
+
+3. Podcast Assets
+
+4. FAQ Bank
+
+5. Answer Bank
+
+6. Objection Bank
+
+7. Readiness Assessment
+
+8. Permission Statements
+
+9. Confidence Builders
+
+10. Myth Challenge Content
+
+11. Decision Support Content
+
+12. Progressive Belief Ladder
+
+13. Community Building Content
+
+Do not generate sales copy.
+
+Generate reinforcement assets only.
+```

@@ -1,0 +1,387 @@
+```markdown id="pg-proof-v2"
+# PROOF ASSET GENERATOR V2
+# PROMPT GENIE
+
+# IMPORTANT
+
+Apply the Prompt Genie Master System Prompt before executing this prompt.
+
+All outputs must comply with the Brand Foundation.
+
+---
+
+# ROLE
+
+You are an expert trust strategist, audience psychologist, case study writer, demonstration designer, communication strategist, and accessibility advocate.
+
+Your task is to create proof assets that help ordinary people believe:
+
+"AI is for people like me."
+
+---
+
+# PRIMARY OBJECTIVE
+
+Build confidence.
+
+Reduce fear.
+
+Reduce exclusion.
+
+Reduce intimidation.
+
+Increase belief that:
+
+- AI is accessible
+- AI is practical
+- AI is usable
+- AI is not only for experts
+
+---
+
+# STRATEGIC PURPOSE
+
+Do NOT sell.
+
+Do NOT persuade aggressively.
+
+Do NOT create hype.
+
+The goal is:
+
+Demonstrate possibility.
+
+Create trust.
+
+Create confidence.
+
+---
+
+# INPUT
+
+PRODUCT NAME:
+[INSERT]
+
+CORE IDEA:
+[INSERT]
+
+TARGET AUDIENCE:
+[INSERT]
+
+CURRENT BELIEF:
+[INSERT]
+
+CURRENT FEAR:
+[INSERT]
+
+CURRENT STRUGGLE:
+[INSERT]
+
+DESIRED OUTCOME:
+[INSERT]
+
+PRODUCT DESCRIPTION:
+[INSERT]
+
+---
+
+# PROOF PHILOSOPHY
+
+Focus on:
+
+Ordinary people.
+
+Not exceptional people.
+
+Focus on:
+
+Accessibility.
+
+Not achievement.
+
+Focus on:
+
+Getting started.
+
+Not mastery.
+
+---
+
+# LANGUAGE REQUIREMENTS
+
+All output must be Bengali (India).
+
+Use:
+
+- Simple Bengali
+- Human Bengali
+- Accessible Bengali
+
+Avoid:
+
+- Technical jargon
+- Marketing hype
+- Corporate language
+
+---
+
+# ACCESSIBILITY PROOF
+
+Generate 20 proof statements.
+
+Examples:
+
+- AI ব্যবহার করতে Laptop থাকা বাধ্যতামূলক নয়।
+- Android ফোন দিয়েও শুরু করা সম্ভব।
+- ইংরেজিতে দুর্বল হলেও AI ব্যবহার করা যায়।
+
+Create similar statements.
+
+---
+
+# ORDINARY USER PROFILES
+
+Generate 20 realistic user profiles.
+
+Examples:
+
+- বাংলা মাধ্যমের ছাত্র
+- গৃহবধূ
+- ছোট দোকানদার
+- টিউশন শিক্ষক
+- কৃষক
+- দৈনিক মজুর
+- চাকরি প্রার্থী
+
+For each profile provide:
+
+- Background
+- Fear
+- Barrier
+- First Success
+
+---
+
+# BEFORE VS AFTER
+
+Generate 20 transformations.
+
+Structure:
+
+Before:
+Belief
+
+After:
+Belief
+
+Focus on confidence shifts.
+
+Not income claims.
+
+Not unrealistic results.
+
+---
+
+# DEMONSTRATION ASSETS
+
+Generate 20 demonstration ideas.
+
+Structure:
+
+Problem
+
+Old Way
+
+Simpler Way
+
+What Changed
+
+---
+
+# MINI CASE STUDIES
+
+Generate 10 realistic case studies.
+
+Structure:
+
+1. Person
+
+2. Situation
+
+3. Initial Fear
+
+4. What They Tried
+
+5. What Happened
+
+6. Lesson Learned
+
+Keep them realistic.
+
+---
+
+# SKEPTICAL QUESTIONS
+
+Generate 50 skeptical questions.
+
+Focus on:
+
+- Fear
+- Confidence
+- English
+- Technology
+- Android phones
+- AI accessibility
+
+Examples:
+
+- আমার Laptop নেই।
+- আমি ইংরেজি জানি না।
+- আমি প্রযুক্তিতে ভালো নই।
+
+---
+
+# CONFIDENCE RESPONSES
+
+Provide thoughtful answers to every question.
+
+Never shame.
+
+Never oversell.
+
+Never pressure.
+
+---
+
+# MYTH VS REALITY
+
+Generate 25 entries.
+
+Structure:
+
+Myth
+
+Reality
+
+Focus on:
+
+- AI
+- English
+- Technology
+- Devices
+- Expertise
+
+---
+
+# STARTING STORIES
+
+Generate 20 short stories.
+
+Purpose:
+
+Help readers see themselves in the story.
+
+Each story should feature:
+
+- An ordinary person
+- A realistic struggle
+- A simple beginning
+
+---
+
+# PRODUCT WALKTHROUGH NARRATIVE
+
+Explain:
+
+What happens first.
+
+What happens next.
+
+What happens after that.
+
+Make the experience feel:
+
+- Simple
+- Friendly
+- Possible
+
+---
+
+# TRUST BUILDING CONTENT
+
+Generate:
+
+- 20 trust statements
+- 20 reassurance statements
+- 20 confidence statements
+
+Focus on:
+
+Accessibility.
+
+Not superiority.
+
+---
+
+# QUALITY CONTROL
+
+Verify:
+
+✓ Ordinary people are represented
+
+✓ Android users are represented
+
+✓ English limitations are represented
+
+✓ Technology fear is represented
+
+✓ Confidence increases
+
+✓ Fear decreases
+
+✓ No elitism exists
+
+✓ No hype exists
+
+✓ No unrealistic claims exist
+
+✓ AI feels accessible
+
+✓ Audience dignity is protected
+
+---
+
+# OUTPUT FORMAT
+
+Generate:
+
+1. Accessibility Proof
+
+2. Ordinary User Profiles
+
+3. Before vs After
+
+4. Demonstration Assets
+
+5. Mini Case Studies
+
+6. Skeptical Questions
+
+7. Confidence Responses
+
+8. Myth vs Reality
+
+9. Starting Stories
+
+10. Product Walkthrough Narrative
+
+11. Trust Statements
+
+12. Reassurance Statements
+
+13. Confidence Statements
+
+Do not generate sales copy.
+
+Generate proof assets only.
+```
